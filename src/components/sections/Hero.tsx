@@ -87,7 +87,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.66, duration: 0.65, ease: 'easeOut' }}
           >
-            Software & hardware engineering. Systems that push limits.
+            Software engineering · Java · Web development. Systems built to last.
           </motion.p>
 
           <motion.div

@@ -5,28 +5,28 @@ import { gsap } from 'gsap'
 import StatCard from '@/components/ui/StatCard'
 
 const STATS = [
-  { value: '20+', label: 'Projects' },
-  { value: '4+', label: 'Years Building' },
-  { value: '5', label: 'Domains' },
+  { value: '6+', label: 'Projects' },
+  { value: '2+', label: 'Years Building' },
+  { value: '3', label: 'Domains' },
 ]
 
 const SKILL_CARDS = [
   {
-    title: 'Software',
-    icon: '🧠',
-    tags: ['TypeScript', 'Rust', 'Python'],
+    title: 'Web Dev',
+    icon: '🌐',
+    tags: ['React', 'TypeScript', 'Full-Stack'],
     color: '#8B5CF6',
   },
   {
-    title: 'Hardware',
-    icon: '⚡',
-    tags: ['PCB Design', 'FPGA', 'Embedded C'],
+    title: 'Java & OOP',
+    icon: '💻',
+    tags: ['Java', 'C', 'OOP'],
     color: '#4F6EF7',
   },
   {
-    title: 'Systems',
-    icon: '🤖',
-    tags: ['RTOS', 'Linux', 'Distributed'],
+    title: 'Database',
+    icon: '🗄️',
+    tags: ['SQL', 'DB Design', 'RDBMS'],
     color: '#10d4a0',
   },
 ]
@@ -90,7 +90,7 @@ export default function About() {
                 className="about-text-reveal text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
                 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-primary)' }}
               >
-                I build things that shouldn't work —{' '}
+                Software engineering student —{' '}
                 <span
                   style={{
                     background: 'linear-gradient(135deg, #8aaeff, #8B5CF6)',
@@ -99,16 +99,16 @@ export default function About() {
                     backgroundClip: 'text',
                   }}
                 >
-                  until they do.
+                  building real things.
                 </span>
               </h2>
             </div>
 
             <div className="flex flex-col gap-4">
               {[
-                "I'm an engineer who operates across the full stack — from schematic design and embedded firmware to distributed cloud systems and interactive interfaces. My work lives at the intersection of precision and ambition.",
-                "I'm drawn to problems where the constraints are real: limited power budgets, millisecond latency requirements, physics that don't negotiate. I believe the best engineering comes from deeply understanding a system before touching it.",
-                "Whether it's a mesh network of sensors in an industrial plant or a real-time collaboration platform for hardware teams, I care about systems that are reliable, elegant, and built to last.",
+                "I'm a software engineering student at the German University in Cairo (GUC), working across web development, Java, and relational databases. I care about writing clean code, solving real problems, and shipping things that actually work.",
+                "I've built projects solo and in teams — from a Java board game engine to a group-developed student platform. I approach each one the same way: understand the problem first, design before coding, and iterate until it's right.",
+                "Outside of software, I do filmmaking and cinematography — which has taught me a lot about visual communication, attention to detail, and making something that resonates with an audience.",
               ].map((text, i) => (
                 <p
                   key={i}

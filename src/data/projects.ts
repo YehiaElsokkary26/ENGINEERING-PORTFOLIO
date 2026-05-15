@@ -14,103 +14,108 @@ export interface Project {
   gradient: [string, string];
   accentColor: string;
   results: { label: string; value: string }[];
+  github?: string;
+  live?: string;
 }
 
 export const projects: Project[] = [
   {
-    id: 'orbital',
+    id: 'special-folio',
     number: '01',
-    title: 'Orbital',
-    tagline: 'Distributed sensor network at scale.',
-    category: 'EMBEDDED SYSTEMS',
-    description:
-      'A fault-tolerant mesh network of 400+ wireless sensor nodes deployed across industrial infrastructure. Real-time telemetry, sub-10ms latency, and self-healing topology.',
-    challenge:
-      'Industrial environments create extreme RF interference. Traditional star topology collapses under node failure. The system needed to survive partial outages while maintaining data integrity across all nodes.',
-    solution:
-      'Designed a custom TDMA-based mesh protocol over 900MHz LoRa radios. Each node runs a lightweight RTOS scheduler with automatic re-routing via Dijkstra on link-state updates. Edge-aggregation nodes compress telemetry before forwarding to a Kafka cluster.',
-    tech: ['Embedded C', 'FreeRTOS', 'LoRa', 'Kafka', 'Python', 'Grafana', 'PCB Design'],
-    year: 2024,
-    duration: '8 months',
-    role: 'Lead Engineer',
-    gradient: ['#0d1b4b', '#1a0533'],
-    accentColor: '#4F6EF7',
-    results: [
-      { label: 'Sensor Nodes', value: '400+' },
-      { label: 'Uptime', value: '99.97%' },
-      { label: 'Latency', value: '<10ms' },
-    ],
-  },
-  {
-    id: 'pulse',
-    number: '02',
-    title: 'Pulse',
-    tagline: 'Real-time data pipeline for live analytics.',
-    category: 'SYSTEMS ENGINEERING',
-    description:
-      'A high-throughput event streaming platform processing 2M+ events/sec with sub-50ms end-to-end latency. Built for a fintech client tracking live market signals across 80 data feeds.',
-    challenge:
-      'Legacy batch pipelines introduced multi-second delays, making real-time trading decisions impossible. Backpressure during market volatility spikes caused cascading failures across downstream consumers.',
-    solution:
-      'Re-architected around Kafka Streams + Flink for stateful event processing. Implemented adaptive backpressure using credit-based flow control. Deployed on Kubernetes with horizontal pod autoscaling triggered by consumer lag metrics.',
-    tech: ['Apache Kafka', 'Apache Flink', 'Kubernetes', 'Rust', 'Go', 'ClickHouse', 'Prometheus'],
-    year: 2024,
-    duration: '6 months',
-    role: 'Systems Architect',
-    gradient: ['#0a2218', '#0d1a2e'],
-    accentColor: '#10d4a0',
-    results: [
-      { label: 'Events/sec', value: '2M+' },
-      { label: 'E2E Latency', value: '<50ms' },
-      { label: 'Cost Reduction', value: '60%' },
-    ],
-  },
-  {
-    id: 'drift',
-    number: '03',
-    title: 'Drift',
-    tagline: 'Autonomous navigation for constrained environments.',
-    category: 'ROBOTICS',
-    description:
-      'A full-stack autonomous navigation system for warehouse AMRs. Handles dynamic obstacle avoidance, multi-robot coordination, and path re-planning at 30Hz with no GPS.',
-    challenge:
-      'GPS-denied indoor environments require centimeter-level localisation. Dense warehouse layouts with moving humans and forklifts demand navigation decisions faster than human reaction time.',
-    solution:
-      'Fused LiDAR SLAM (Cartographer) with wheel odometry and IMU for robust localisation. Implemented DWA-based local planner with custom cost functions for pedestrian-aware navigation. Multi-robot coordination via a central fleet manager using auction-based task allocation.',
-    tech: ['ROS 2', 'C++', 'Python', 'LiDAR SLAM', 'OpenCV', 'Docker', 'NVIDIA Jetson'],
-    year: 2023,
-    duration: '10 months',
-    role: 'Robotics Engineer',
-    gradient: ['#1a1205', '#0f0a1f'],
-    accentColor: '#E07B39',
-    results: [
-      { label: 'Localisation Accuracy', value: '±2cm' },
-      { label: 'Replanning Rate', value: '30Hz' },
-      { label: 'Collision Rate', value: '0' },
-    ],
-  },
-  {
-    id: 'nexus',
-    number: '04',
-    title: 'Nexus',
-    tagline: 'Where engineering teams converge.',
+    title: 'Special Folio',
+    tagline: 'Where GUC students showcase their best work.',
     category: 'WEB PLATFORM',
     description:
-      'A collaborative engineering platform with live schematic editing, version-controlled simulation runs, and real-time multiplayer review sessions. Think Figma — for hardware teams.',
+      'A student project discovery platform built for the German University in Cairo (GUC). Students can browse, search, and publish academic projects in a centralized hub — replacing scattered links and hard-to-find work with one clean destination.',
     challenge:
-      'Engineering teams working on complex hardware projects lacked a unified collaboration layer. Design files lived in email threads. Review cycles took days. No single source of truth.',
+      'Student projects at GUC lived in email threads, local drives, and disconnected course submissions. There was no shared space to discover what peers were building, or to surface completed work to recruiters and faculty.',
     solution:
-      'Built a CRDT-based collaborative editor using Yjs for conflict-free concurrent edits. Real-time presence via WebSockets. Simulation runs managed through a job queue (BullMQ) with progress streaming to clients. Schematic rendering via a custom WebGL canvas renderer.',
-    tech: ['TypeScript', 'React', 'Yjs', 'WebSockets', 'Node.js', 'PostgreSQL', 'BullMQ', 'WebGL'],
-    year: 2023,
-    duration: '12 months',
-    role: 'Full-Stack Lead',
+      'Co-built a full-stack web platform across a 5-person team as part of a Software Engineering course. Implemented project listings, search and filtering, and a clean browsing interface. Coordinated using Git branching workflows and agile-style milestones to ship a working product within a single semester.',
+    tech: ['Full-Stack Web', 'Git', 'Agile', 'Software Engineering', 'Teamwork'],
+    year: 2026,
+    duration: '1 Semester',
+    role: 'Co-Developer',
+    gradient: ['#0a1628', '#0d0a2e'],
+    accentColor: '#4F6EF7',
+    github: 'https://github.com/Software-Engineering-Spring-2026/The-special-ones',
+    results: [
+      { label: 'Team Size', value: '5+' },
+      { label: 'Delivery', value: '1 Semester' },
+      { label: 'Type', value: 'Group' },
+    ],
+  },
+  {
+    id: 'jackaroo',
+    number: '02',
+    title: 'Jackaroo',
+    tagline: 'A classic board game, fully reimagined in Java.',
+    category: 'JAVA APPLICATION',
+    description:
+      'A fully playable digital adaptation of Jackaroo — the popular Middle Eastern board game — built entirely in Java. Complete game rules, turn-based logic, collision detection, and a graphical interface, all from scratch.',
+    challenge:
+      'Jackaroo has non-trivial mechanics: card-driven movement, marble collisions, safe zones, and multi-player turn management. Translating these physical rules into clean, bug-free code required careful design before writing a single line.',
+    solution:
+      'Applied object-oriented design to model the board, marbles, players, and card deck as distinct classes with clear responsibilities. Implemented the full rule engine including special card effects, collision resolution, and win-state detection. Iterated through play sessions to surface and fix edge cases.',
+    tech: ['Java', 'OOP', 'Eclipse', 'Game Logic', 'Software Design'],
+    year: 2025,
+    duration: '6 Weeks',
+    role: 'Developer',
+    gradient: ['#1a0f05', '#0f0a1f'],
+    accentColor: '#E07B39',
+    results: [
+      { label: 'Language', value: 'Java' },
+      { label: 'Pattern', value: 'OOP' },
+      { label: 'Status', value: 'Complete' },
+    ],
+  },
+  {
+    id: 'hr-db',
+    number: '03',
+    title: 'HR Management System',
+    tagline: 'Relational database design for real HR workflows.',
+    category: 'DATABASE',
+    description:
+      'A SQL-based Human Resources Management System covering employee records, department hierarchies, payroll data, and reporting queries. Designed around normalization principles and realistic HR business logic.',
+    challenge:
+      'HR data is inherently relational: employees belong to departments, managers oversee teams, salaries have history, and reports span multiple entities. Modeling this without redundancy or broken joins requires upfront schema discipline.',
+    solution:
+      'Designed a normalized relational schema (3NF) covering employees, departments, roles, salaries, and managers. Wrote complex multi-table SQL queries for common HR reports: headcount by department, average salary by role, manager-report chains, and hire-date range filters. Validated data integrity using constraint-based testing.',
+    tech: ['SQL', 'Database Design', 'Schema Normalization', 'RDBMS', 'Query Writing'],
+    year: 2025,
+    duration: '3 Weeks',
+    role: 'Database Designer',
+    gradient: ['#0a1e12', '#0d1a2e'],
+    accentColor: '#10d4a0',
+    results: [
+      { label: 'Normal Form', value: '3NF' },
+      { label: 'Language', value: 'SQL' },
+      { label: 'Status', value: 'Complete' },
+    ],
+  },
+  {
+    id: 'filmmaking-portfolio',
+    number: '04',
+    title: 'Filmmaking Portfolio',
+    tagline: 'A live creative showcase for cinematography work.',
+    category: 'WEB DEVELOPMENT',
+    description:
+      'A personal portfolio website designed and deployed to showcase filmmaking and cinematography work. Clean layout, responsive design, and fast load performance — built to function as a public-facing creative profile.',
+    challenge:
+      'Creative portfolios must balance aesthetics with performance and discoverability. Every design decision — typography, spacing, image presentation — directly affects whether a viewer stays or leaves in the first few seconds.',
+    solution:
+      'Built using React-based modern web tooling. Focused on responsive layout, clean visual hierarchy, and a minimal interface that puts the work front and center. Deployed as a live, publicly accessible site that serves as a professional creative calling card.',
+    tech: ['React', 'TypeScript', 'Web Development', 'Responsive Design', 'Deployment'],
+    year: 2025,
+    duration: '2 Weeks',
+    role: 'Developer & Designer',
     gradient: ['#110820', '#050e1f'],
     accentColor: '#8B5CF6',
+    github: 'https://github.com/YehiaElsokkary26/Yehia_Elsokkary_Filmmaking',
+    live: 'https://yehiaelsokkary.lovable.app/',
     results: [
-      { label: 'Review Cycle Time', value: '-80%' },
-      { label: 'Active Teams', value: '120+' },
-      { label: 'Concurrent Users', value: '500+' },
+      { label: 'Status', value: 'Live' },
+      { label: 'Type', value: 'Personal' },
+      { label: 'Stack', value: 'React' },
     ],
   },
 ];

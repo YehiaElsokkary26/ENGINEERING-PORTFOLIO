@@ -2,9 +2,9 @@ import { motion } from 'framer-motion'
 import { Mail, Globe, GitBranch, AtSign } from 'lucide-react'
 
 const SOCIALS = [
-  { icon: GitBranch, label: 'GitHub', href: 'https://github.com' },
-  { icon: Globe,     label: 'LinkedIn', href: 'https://linkedin.com' },
-  { icon: AtSign,    label: 'X / Twitter', href: 'https://twitter.com' },
+  { icon: GitBranch, label: 'GitHub',   href: 'https://github.com/YehiaElsokkary26' },
+  { icon: Globe,     label: 'LinkedIn', href: 'https://www.linkedin.com/in/yehia-elsokkary-b785792b7/' },
+  { icon: AtSign,    label: 'Email',    href: 'mailto:yehia.elsokkary@gmail.com' },
 ]
 
 export default function Contact() {
@@ -43,7 +43,7 @@ export default function Contact() {
         <div className="flex flex-col sm:flex-row gap-5 justify-center max-w-2xl mx-auto mb-16">
           {/* Email card */}
           <motion.a
-            href="mailto:hello@antigravity.dev"
+            href="mailto:yehia.elsokkary@gmail.com"
             className="flex-1 flex items-center gap-4 p-6 rounded-2xl"
             style={{
               background: 'rgba(14,14,26,0.7)',
@@ -82,7 +82,7 @@ export default function Contact() {
 
           {/* LinkedIn card */}
           <motion.a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/yehia-elsokkary-b785792b7/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1 flex items-center gap-4 p-6 rounded-2xl"
