@@ -2,9 +2,12 @@ import PageWrapper from '@/components/layout/PageWrapper'
 import Footer from '@/components/layout/Footer'
 import Hero from '@/components/sections/Hero'
 import About from '@/components/sections/About'
-import Projects from '@/components/sections/Projects'
+import Education from '@/components/sections/Education'
 import Skills from '@/components/sections/Skills'
-import Process from '@/components/sections/Process'
+import Experience from '@/components/sections/Experience'
+import Projects from '@/components/sections/Projects'
+import ComingSoon from '@/components/sections/ComingSoon'
+import Extracurricular from '@/components/sections/Extracurricular'
 import Contact from '@/components/sections/Contact'
 
 export default function Home() {
@@ -13,9 +16,12 @@ export default function Home() {
       <main>
         <Hero />
         <About />
-        <Projects />
+        <Education />
         <Skills />
-        <Process />
+        <Experience />
+        <Projects />
+        <ComingSoon />
+        <Extracurricular />
         <Contact />
       </main>
       <Footer />

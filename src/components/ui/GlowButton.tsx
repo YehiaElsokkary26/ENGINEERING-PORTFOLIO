@@ -6,6 +6,10 @@ interface GlowButtonProps {
   variant?: 'filled' | 'outlined'
   onClick?: () => void
   className?: string
+  href?: string
+  target?: string
+  rel?: string
+  as?: 'button' | 'a'
 }
 
 export default function GlowButton({
@@ -13,6 +17,10 @@ export default function GlowButton({
   variant = 'filled',
   onClick,
   className = '',
+  href,
+  target,
+  rel,
+  as: Tag = 'button',
 }: GlowButtonProps) {
   const base: CSSProperties =
     variant === 'filled'
@@ -29,21 +37,30 @@ export default function GlowButton({
           backdropFilter: 'blur(12px)',
         }
 
+  const sharedProps = {
+    className: `inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold tracking-wide whitespace-nowrap min-w-[120px] ${className}`,
+    style: { ...base, fontFamily: 'var(--font-body)' } as CSSProperties,
+    whileHover: {
+      scale: 1.02,
+      boxShadow:
+        variant === 'filled'
+          ? '0 0 32px rgba(79,110,247,0.5), 0 0 64px rgba(79,110,247,0.15)'
+          : '0 0 20px rgba(255,255,255,0.06)',
+    },
+    whileTap: { scale: 0.97 },
+    transition: { duration: 0.15 },
+  }
+
+  if (href) {
+    return (
+      <motion.a href={href} target={target} rel={rel} onClick={onClick} {...sharedProps}>
+        {children}
+      </motion.a>
+    )
+  }
+
   return (
-    <motion.button
-      onClick={onClick}
-      className={`px-6 py-3 rounded-xl text-sm font-semibold tracking-wide ${className}`}
-      style={{ ...base, fontFamily: 'var(--font-body)' }}
-      whileHover={{
-        scale: 1.02,
-        boxShadow:
-          variant === 'filled'
-            ? '0 0 32px rgba(79,110,247,0.5), 0 0 64px rgba(79,110,247,0.15)'
-            : '0 0 20px rgba(255,255,255,0.06)',
-      }}
-      whileTap={{ scale: 0.97 }}
-      transition={{ duration: 0.15 }}
-    >
+    <motion.button onClick={onClick} {...sharedProps}>
       {children}
     </motion.button>
   )

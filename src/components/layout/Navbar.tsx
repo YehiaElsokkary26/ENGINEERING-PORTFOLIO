@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, FileText } from 'lucide-react'
 import { scrollToSection } from '@/hooks/useSmoothScroll'
 
 const NAV_LINKS = [
   { label: 'About', href: '#about' },
-  { label: 'Work', href: '#projects' },
+  { label: 'Education', href: '#education' },
   { label: 'Skills', href: '#skills' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Projects', href: '#projects' },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -75,6 +77,25 @@ export default function Navbar() {
                 </button>
               </li>
             ))}
+            <li>
+              <motion.a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap"
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  background: 'rgba(16,212,160,0.08)',
+                  border: '1px solid rgba(16,212,160,0.3)',
+                  color: '#10d4a0',
+                }}
+                whileHover={{ boxShadow: '0 0 16px rgba(16,212,160,0.25)' }}
+                transition={{ duration: 0.15 }}
+              >
+                <FileText size={12} />
+                Resume
+              </motion.a>
+            </li>
           </ul>
 
           {/* Mobile toggle */}
@@ -118,6 +139,29 @@ export default function Navbar() {
                   </button>
                 </motion.li>
               ))}
+              <motion.li
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 12 }}
+                transition={{ delay: NAV_LINKS.length * 0.07, duration: 0.35 }}
+              >
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold"
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    background: 'rgba(16,212,160,0.1)',
+                    border: '1px solid rgba(16,212,160,0.35)',
+                    color: '#10d4a0',
+                  }}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  <FileText size={14} />
+                  View Resume
+                </a>
+              </motion.li>
             </ul>
           </motion.div>
         )}

@@ -2,13 +2,14 @@ import { lazy, Suspense } from 'react'
 import { motion } from 'framer-motion'
 import { scrollToSection } from '@/hooks/useSmoothScroll'
 import GlowButton from '@/components/ui/GlowButton'
+import { Download } from 'lucide-react'
+
 
 const HeroScene = lazy(() => import('@/components/three/HeroScene'))
 
-const HEADING = [
-  { word: 'Built', gradient: false },
-  { word: 'against', gradient: false },
-  { word: 'gravity.', gradient: true },
+const NAME_WORDS = [
+  { word: 'Yehia', gradient: false },
+  { word: 'Elsokkary.', gradient: true },
 ]
 
 export default function Hero() {
@@ -43,14 +44,14 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.05, duration: 0.55, ease: 'easeOut' }}
           >
-            Engineering Portfolio
+            Open to Engineering Roles &amp; Internships
           </motion.p>
 
           <h1
-            className="text-display mb-6"
-            aria-label={HEADING.map((h) => h.word).join(' ')}
+            className="text-display mb-3"
+            aria-label={NAME_WORDS.map((h) => h.word).join(' ')}
           >
-            {HEADING.map(({ word, gradient }, i) => (
+            {NAME_WORDS.map(({ word, gradient }, i) => (
               <motion.span
                 key={word}
                 className="inline-block mr-[0.22em] last:mr-0"
@@ -82,25 +83,45 @@ export default function Hero() {
           </h1>
 
           <motion.p
-            className="text-hero-sub mb-10 max-w-[42ch]"
+            className="text-xl md:text-2xl font-semibold mb-5"
+            style={{ color: 'rgba(139,92,246,0.9)', fontFamily: 'var(--font-display)' }}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.52, duration: 0.55, ease: 'easeOut' }}
+          >
+            Computer Engineering Student &amp; Developer
+          </motion.p>
+
+          <motion.p
+            className="text-hero-sub mb-10 max-w-[46ch]"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.66, duration: 0.65, ease: 'easeOut' }}
           >
-            Software engineering · Java · Web development. Systems built to last.
+            Computer Engineering student at GUC — building full-stack applications, Java systems, and software that actually ships.
           </motion.p>
 
           <motion.div
-            className="flex items-center gap-4 flex-wrap"
+            className="flex items-center gap-3 flex-wrap"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.82, duration: 0.55, ease: 'easeOut' }}
           >
             <GlowButton variant="filled" onClick={() => scrollToSection('#projects')}>
-              View Work
+              View Projects
             </GlowButton>
             <GlowButton variant="outlined" onClick={() => scrollToSection('#contact')}>
-              Get in Touch
+              Contact Me
+            </GlowButton>
+            <GlowButton
+              variant="outlined"
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-[rgba(16,212,160,0.4)] text-[#10d4a0]"
+            >
+              <Download size={14} />
+              Resume
             </GlowButton>
           </motion.div>
         </div>

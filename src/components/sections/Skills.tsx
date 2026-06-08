@@ -36,23 +36,23 @@ export default function Skills() {
       }}
     >
       <div className="container-wide">
-        <div className="mb-16 text-center">
+        <div className="mb-14">
           <p className="section-tag mb-4">Capabilities</p>
           <h2
-            className="text-3xl md:text-5xl font-bold tracking-tight mb-4"
+            className="text-3xl md:text-5xl font-bold tracking-tight mb-3"
             style={{ fontFamily: 'var(--font-display)', color: 'var(--text-primary)' }}
           >
             Tools of the trade.
           </h2>
           <p
-            className="text-sm max-w-sm mx-auto"
+            className="text-sm"
             style={{ color: 'var(--text-muted)' }}
           >
-            The stack I reach for when things need to actually work.
+            The skills and stack I reach for when building real things.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-start">
           {skillDomains.map((domain) => (
             <SkillColumn key={domain.id} domain={domain} />
           ))}

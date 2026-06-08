@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, GitBranch, ExternalLink } from 'lucide-react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import type { Project } from '@/data/projects'
@@ -84,7 +84,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         <div className="flex flex-col justify-center gap-4 p-8 md:p-10 flex-1">
           <div className="flex items-center gap-3">
             <span
-              className="text-xs px-2.5 py-1 rounded-full"
+              className="text-xs px-3 py-1 rounded-full whitespace-nowrap"
               style={{
                 fontFamily: 'var(--font-mono)',
                 background: `${project.accentColor}18`,
@@ -120,7 +120,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             {project.tech.slice(0, 5).map((t) => (
               <span
                 key={t}
-                className="px-2.5 py-1 rounded-md text-xs"
+                className="px-3 py-1 rounded-full text-xs whitespace-nowrap"
                 style={{
                   fontFamily: 'var(--font-mono)',
                   background: 'rgba(255,255,255,0.04)',
@@ -133,19 +133,53 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             ))}
           </div>
 
-          <motion.button
-            onClick={() => navigate(`/project/${project.id}`)}
-            className="flex items-center gap-2 mt-2 w-fit text-sm font-semibold group"
-            style={{ color: project.accentColor, fontFamily: 'var(--font-body)' }}
-            whileHover={{ x: 4 }}
-            transition={{ duration: 0.2 }}
-          >
-            View Project
-            <ArrowRight
-              size={16}
-              className="transition-transform duration-200 group-hover:translate-x-1"
-            />
-          </motion.button>
+          <div className="flex items-center gap-4 mt-2 flex-wrap">
+            <motion.button
+              onClick={() => navigate(`/project/${project.id}`)}
+              className="flex items-center gap-2 w-fit text-sm font-semibold group"
+              style={{ color: project.accentColor, fontFamily: 'var(--font-body)' }}
+              whileHover={{ x: 4 }}
+              transition={{ duration: 0.2 }}
+            >
+              View Project
+              <ArrowRight
+                size={16}
+                className="transition-transform duration-200 group-hover:translate-x-1"
+              />
+            </motion.button>
+
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${project.title} GitHub repository`}
+                className="flex items-center gap-1.5 text-xs transition-colors duration-200"
+                style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text-primary)')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}
+              >
+                <GitBranch size={13} />
+                Code
+              </a>
+            )}
+
+            {project.live && (
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${project.title} live demo`}
+                className="flex items-center gap-1.5 text-xs transition-colors duration-200"
+                style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text-primary)')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}
+              >
+                <ExternalLink size={13} />
+                Live
+              </a>
+            )}
+          </div>
         </div>
       </motion.div>
     </div>

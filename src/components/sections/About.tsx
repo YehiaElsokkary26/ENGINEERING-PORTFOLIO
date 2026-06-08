@@ -1,32 +1,39 @@
 import { useRef } from 'react'
+import type { ComponentType } from 'react'
 import { motion } from 'framer-motion'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
+import { Code2, Film, Star } from 'lucide-react'
 import StatCard from '@/components/ui/StatCard'
 
 const STATS = [
-  { value: '6+', label: 'Projects' },
-  { value: '2+', label: 'Years Building' },
-  { value: '3', label: 'Domains' },
+  { value: '4+', label: 'Projects Built' },
+  { value: '99.4%', label: 'IGCSE Score' },
+  { value: '3', label: 'Languages' },
 ]
 
-const SKILL_CARDS = [
+const IDENTITY_CARDS: {
+  title: string
+  icon: ComponentType<{ size?: number; color?: string }>
+  tags: string[]
+  color: string
+}[] = [
   {
-    title: 'Web Dev',
-    icon: '🌐',
-    tags: ['React', 'TypeScript', 'Full-Stack'],
-    color: '#8B5CF6',
-  },
-  {
-    title: 'Java & OOP',
-    icon: '💻',
-    tags: ['Java', 'C', 'OOP'],
+    title: 'Engineering',
+    icon: Code2,
+    tags: ['Full-Stack', 'Java OOP', 'Databases'],
     color: '#4F6EF7',
   },
   {
-    title: 'Database',
-    icon: '🗄️',
-    tags: ['SQL', 'DB Design', 'RDBMS'],
+    title: 'Creative',
+    icon: Film,
+    tags: ['Filmmaking', 'Photography', 'UI/UX'],
+    color: '#8B5CF6',
+  },
+  {
+    title: 'Leadership',
+    icon: Star,
+    tags: ['IEEE', 'MUN', 'Marketing'],
     color: '#10d4a0',
   },
 ]
@@ -50,7 +57,7 @@ export default function About() {
         },
       })
 
-      const cards = cardsRef.current?.querySelectorAll('.skill-fan-card')
+      const cards = cardsRef.current?.querySelectorAll('.identity-card')
       if (cards) {
         gsap.from(cards, {
           opacity: 0,
@@ -90,7 +97,7 @@ export default function About() {
                 className="about-text-reveal text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
                 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-primary)' }}
               >
-                Software engineering student —{' '}
+                Computer Engineering student —{' '}
                 <span
                   style={{
                     background: 'linear-gradient(135deg, #8aaeff, #8B5CF6)',
@@ -106,9 +113,9 @@ export default function About() {
 
             <div className="flex flex-col gap-4">
               {[
-                "I'm a software engineering student at the German University in Cairo (GUC), working across web development, Java, and relational databases. I care about writing clean code, solving real problems, and shipping things that actually work.",
-                "I've built projects solo and in teams — from a Java board game engine to a group-developed student platform. I approach each one the same way: understand the problem first, design before coding, and iterate until it's right.",
-                "Outside of software, I do filmmaking and cinematography — which has taught me a lot about visual communication, attention to detail, and making something that resonates with an audience.",
+                "Third-year Computer Engineering student at the German University in Cairo (GUC) — building with Java, Python, and full-stack React & Node.js. From scheduling platforms to digital board games and IoT circuits, I engineer solutions to problems worth solving.",
+                "Every project starts the same way: map the constraints, design before coding, iterate until it works. I've shipped full-stack platforms, game engines, and database systems — both solo and in teams.",
+                "Outside the IDE, I direct short films, shoot photography, and lead marketing teams at IEEE and MUN. Creativity and engineering aren't separate disciplines — they're the same skill applied to different materials.",
               ].map((text, i) => (
                 <p
                   key={i}
@@ -127,62 +134,73 @@ export default function About() {
             </div>
           </div>
 
-          {/* Right — floating card stack */}
+          {/* Right — identity card stack */}
           <div
             ref={cardsRef}
             className="relative flex items-center justify-center"
             style={{ perspective: '1200px', minHeight: '380px' }}
           >
-            {SKILL_CARDS.map((card, i) => (
-              <motion.div
-                key={card.title}
-                className="skill-fan-card absolute w-64 p-6 rounded-2xl"
-                style={{
-                  background: 'rgba(14,14,26,0.85)',
-                  backdropFilter: 'blur(14px)',
-                  border: `1px solid ${card.color}30`,
-                  borderTop: `2px solid ${card.color}`,
-                  transformOrigin: 'bottom center',
-                  rotate: (i - 1) * 8,
-                  translateX: (i - 1) * 40,
-                  translateY: Math.abs(i - 1) * 16,
-                  zIndex: SKILL_CARDS.length - Math.abs(i - 1),
-                }}
-                whileHover={{
-                  rotate: 0,
-                  translateX: 0,
-                  translateY: -16,
-                  zIndex: 10,
-                  transition: { duration: 0.35 },
-                }}
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-2xl">{card.icon}</span>
-                  <h3
-                    className="font-bold text-lg"
-                    style={{ fontFamily: 'var(--font-display)', color: 'var(--text-primary)' }}
-                  >
-                    {card.title}
-                  </h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {card.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-1 rounded-md text-xs"
+            {IDENTITY_CARDS.map((card, i) => {
+              const Icon = card.icon
+              return (
+                <motion.div
+                  key={card.title}
+                  className="identity-card absolute w-64 p-6 rounded-2xl"
+                  style={{
+                    background: 'rgba(14,14,26,0.85)',
+                    backdropFilter: 'blur(14px)',
+                    border: `1px solid ${card.color}30`,
+                    borderTop: `2px solid ${card.color}`,
+                    transformOrigin: 'bottom center',
+                    rotate: (i - 1) * 8,
+                    translateX: (i - 1) * 40,
+                    translateY: Math.abs(i - 1) * 16,
+                    zIndex: IDENTITY_CARDS.length - Math.abs(i - 1),
+                  }}
+                  whileHover={{
+                    rotate: 0,
+                    translateX: 0,
+                    translateY: -16,
+                    zIndex: 10,
+                    transition: { duration: 0.35 },
+                  }}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div
+                      className="w-8 h-8 flex items-center justify-center rounded-lg flex-shrink-0"
                       style={{
-                        fontFamily: 'var(--font-mono)',
-                        background: `${card.color}12`,
+                        background: `${card.color}15`,
                         border: `1px solid ${card.color}30`,
-                        color: card.color,
                       }}
                     >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
+                      <Icon size={16} color={card.color} />
+                    </div>
+                    <h3
+                      className="font-bold text-lg"
+                      style={{ fontFamily: 'var(--font-display)', color: 'var(--text-primary)' }}
+                    >
+                      {card.title}
+                    </h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {card.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2.5 py-1 rounded-md text-xs"
+                        style={{
+                          fontFamily: 'var(--font-mono)',
+                          background: `${card.color}12`,
+                          border: `1px solid ${card.color}30`,
+                          color: card.color,
+                        }}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </div>

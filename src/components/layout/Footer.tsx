@@ -11,7 +11,7 @@ export default function Footer() {
         className="text-xs tracking-widest uppercase"
         style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}
       >
-        © {new Date().getFullYear()} Antigravity — Built against gravity.
+        © {new Date().getFullYear()} Yehia Mohamed Elsokkary — All rights reserved.
       </p>
     </footer>
   )

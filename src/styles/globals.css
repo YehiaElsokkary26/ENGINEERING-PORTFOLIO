@@ -200,6 +200,23 @@ a, button, [role="button"] {
 }
 
 /* ============================================
+   ACCESSIBILITY — KEYBOARD FOCUS (WCAG AA)
+   cursor: none hides all cursor feedback, so
+   focus-visible outlines are the only remaining
+   keyboard navigation cue. Make them prominent.
+   ============================================ */
+:focus-visible {
+  outline: 2px solid var(--glow-primary);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Suppress focus ring on mouse clicks (only show for keyboard) */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ============================================
    ANIMATIONS
    ============================================ */
 @keyframes pulse-glow {

@@ -67,14 +67,17 @@ export default function Process() {
       style={{ background: 'var(--bg-void)' }}
     >
       <div className="container-wide">
-        <div className="mb-16">
+        <div className="mb-14">
           <p className="section-tag mb-4">Methodology</p>
           <h2
-            className="text-3xl md:text-5xl font-bold tracking-tight"
+            className="text-3xl md:text-5xl font-bold tracking-tight mb-3"
             style={{ fontFamily: 'var(--font-display)', color: 'var(--text-primary)' }}
           >
             How I build.
           </h2>
+          <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
+            A repeatable process for shipping things that actually work.
+          </p>
         </div>
 
         {/* Desktop: horizontal | Mobile: vertical */}
