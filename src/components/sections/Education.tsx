@@ -88,7 +88,8 @@ export default function Education() {
                   borderLeft: `3px solid ${edu.accentColor}`,
                 }}
                 whileHover={{
-                  boxShadow: `0 0 40px ${edu.accentColor}10`,
+                  y: -4,
+                  boxShadow: `0 8px 40px ${edu.accentColor}20`,
                 }}
                 transition={{ duration: 0.25 }}
               >
@@ -131,7 +132,7 @@ export default function Education() {
                       </div>
                     </div>
 
-                    <p className="text-sm mb-4 leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+                    <p className="text-sm mb-4 leading-relaxed" style={{ color: 'var(--text-body)' }}>
                       {edu.detail}
                     </p>
 

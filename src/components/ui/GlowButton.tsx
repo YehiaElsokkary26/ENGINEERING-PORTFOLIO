@@ -32,8 +32,8 @@ export default function GlowButton({
         }
       : {
           background: 'rgba(14,14,26,0.5)',
-          border: '1px solid rgba(255,255,255,0.12)',
-          color: 'var(--text-muted)',
+          border: '1px solid rgba(255,255,255,0.18)',
+          color: 'rgba(240,240,255,0.72)',
           backdropFilter: 'blur(12px)',
         }
 
@@ -45,7 +45,7 @@ export default function GlowButton({
       boxShadow:
         variant === 'filled'
           ? '0 0 32px rgba(79,110,247,0.5), 0 0 64px rgba(79,110,247,0.15)'
-          : '0 0 20px rgba(255,255,255,0.06)',
+          : '0 0 24px rgba(255,255,255,0.1), 0 0 48px rgba(255,255,255,0.04)',
     },
     whileTap: { scale: 0.97 },
     transition: { duration: 0.15 },

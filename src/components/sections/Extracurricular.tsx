@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
-import { Star, Users, Globe } from 'lucide-react'
+import { Star, Users } from 'lucide-react'
 
 const CATEGORIES = [
   {
@@ -11,29 +11,22 @@ const CATEGORIES = [
     color: '#4F6EF7',
     items: [
       'IEEE Marketing Head',
-      "AYB 'Packing 25' Marketing Team Leader",
-      'CMISMUN Multimedia Head',
+      "AYB 'Packing 25' — Marketing Team Leader",
+      'CMISMUN — Multimedia Head',
+      'World Scholars Cup 2021 — Judge & Attendee',
     ],
   },
   {
     icon: Users,
-    label: 'Member Roles',
+    label: 'Activities & Memberships',
     color: '#8B5CF6',
     items: [
-      'IEEE Media Design JTP',
-      'IEEE Marketing',
-      'Athar FR',
-      'GUC MUN Peoples Operations',
-      'Cura HR',
-      'AYB CP',
-    ],
-  },
-  {
-    icon: Globe,
-    label: 'Other Activities',
-    color: '#10d4a0',
-    items: [
-      'World Scholars Cup 2021 (Judge / Attendee)',
+      'IEEE Media Design — Junior Teaching Program',
+      'IEEE Marketing Team',
+      'Athar — Fundraising & Events',
+      'GUC MUN — Peoples Operations',
+      'Cura — Human Resources Committee',
+      'AYB — Corporate Partnerships',
     ],
   },
 ]
@@ -83,8 +76,8 @@ export default function Extracurricular() {
           </p>
         </div>
 
-        {/* Equal-height 3-column grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
+        {/* 2-column balanced grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-stretch">
           {CATEGORIES.map((cat) => {
             const Icon = cat.icon
             return (
@@ -98,7 +91,8 @@ export default function Extracurricular() {
                   borderTop: `2px solid ${cat.color}`,
                 }}
                 whileHover={{
-                  boxShadow: `0 0 40px ${cat.color}12`,
+                  y: -4,
+                  boxShadow: `0 8px 32px ${cat.color}22`,
                   borderColor: `${cat.color}40`,
                 }}
                 transition={{ duration: 0.25 }}
@@ -122,7 +116,7 @@ export default function Extracurricular() {
                   </h3>
                 </div>
 
-                {/* Items — flex-1 pushes them to fill card height evenly */}
+                {/* Items */}
                 <ul className="flex flex-col gap-3 flex-1">
                   {cat.items.map((item, i) => (
                     <li key={i} className="flex items-start gap-2.5">
@@ -130,7 +124,7 @@ export default function Extracurricular() {
                         className="mt-[7px] w-1.5 h-1.5 rounded-full flex-shrink-0"
                         style={{ background: cat.color }}
                       />
-                      <span className="text-sm leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+                      <span className="text-sm leading-relaxed" style={{ color: 'var(--text-body)' }}>
                         {item}
                       </span>
                     </li>

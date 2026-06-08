@@ -88,7 +88,8 @@ export default function Experience() {
                   borderLeft: `3px solid ${exp.accentColor}`,
                 }}
                 whileHover={{
-                  boxShadow: `0 0 40px ${exp.accentColor}12`,
+                  y: -4,
+                  boxShadow: `0 8px 40px ${exp.accentColor}22`,
                 }}
                 transition={{ duration: 0.25 }}
               >
@@ -133,7 +134,7 @@ export default function Experience() {
 
                     <ul className="flex flex-col gap-2.5 mb-5">
                       {exp.bullets.map((bullet, i) => (
-                        <li key={i} className="flex items-start gap-2.5 text-sm" style={{ color: 'var(--text-muted)' }}>
+                        <li key={i} className="flex items-start gap-2.5 text-sm" style={{ color: 'var(--text-body)' }}>
                           <span
                             className="mt-[7px] w-1.5 h-1.5 rounded-full flex-shrink-0"
                             style={{ background: exp.accentColor }}

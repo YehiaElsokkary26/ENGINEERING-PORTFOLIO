@@ -1,6 +1,12 @@
 import { projects } from '@/data/projects'
 import ProjectCard from '@/components/ui/ProjectCard'
 
+const IN_PROGRESS = [
+  { label: 'Arduino IoT', hint: 'Embedded Systems' },
+  { label: 'Mobile App', hint: 'React Native' },
+  { label: 'Stealth Project', hint: 'Details soon' },
+]
+
 export default function Projects() {
   return (
     <section
@@ -26,6 +32,37 @@ export default function Projects() {
           {projects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
+
+          {/* In-progress strip */}
+          <div
+            className="flex flex-wrap items-center gap-x-5 gap-y-3 pt-6"
+            style={{ borderTop: '1px solid var(--border)' }}
+          >
+            <span
+              className="text-xs uppercase tracking-[0.2em]"
+              style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}
+            >
+              In progress
+            </span>
+            {IN_PROGRESS.map(({ label, hint }) => (
+              <span
+                key={label}
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs"
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  background: 'rgba(79,110,247,0.06)',
+                  border: '1px solid rgba(79,110,247,0.15)',
+                }}
+              >
+                <span
+                  className="w-1.5 h-1.5 rounded-full flex-shrink-0 animate-pulse-glow"
+                  style={{ background: 'var(--glow-primary)' }}
+                />
+                <span style={{ color: 'var(--text-primary)' }}>{label}</span>
+                <span style={{ color: 'var(--text-muted)' }}>· {hint}</span>
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>

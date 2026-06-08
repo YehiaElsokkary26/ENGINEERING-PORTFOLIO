@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import type { ComponentType } from 'react'
 import { motion } from 'framer-motion'
 import { useGSAP } from '@gsap/react'
@@ -7,7 +7,7 @@ import { Code2, Film, Star } from 'lucide-react'
 import StatCard from '@/components/ui/StatCard'
 
 const STATS = [
-  { value: '4+', label: 'Projects Built' },
+  { value: '4', label: 'Projects Shipped' },
   { value: '99.4%', label: 'IGCSE Score' },
   { value: '3', label: 'Languages' },
 ]
@@ -41,6 +41,7 @@ const IDENTITY_CARDS: {
 export default function About() {
   const containerRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<HTMLDivElement>(null)
+  const [photoFailed, setPhotoFailed] = useState(false)
 
   useGSAP(
     () => {
@@ -89,8 +90,42 @@ export default function About() {
     >
       <div className="container-wide">
         <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
+
           {/* Left — text */}
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-7">
+
+            {/* Portrait slot — shows headshot or YE monogram fallback */}
+            <div className="about-text-reveal flex items-center gap-3">
+              <div
+                className="relative w-14 h-14 rounded-full overflow-hidden flex-shrink-0"
+                style={{ border: '2px solid rgba(79,110,247,0.35)', background: 'rgba(79,110,247,0.06)' }}
+              >
+                {!photoFailed ? (
+                  <img
+                    src="/headshot.jpg"
+                    alt="Yehia Elsokkary"
+                    className="w-full h-full object-cover"
+                    onError={() => setPhotoFailed(true)}
+                  />
+                ) : (
+                  <span
+                    className="absolute inset-0 flex items-center justify-center text-sm font-bold"
+                    style={{ fontFamily: 'var(--font-display)', color: 'var(--glow-primary)' }}
+                  >
+                    YE
+                  </span>
+                )}
+              </div>
+              <div>
+                <p className="text-sm font-semibold" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}>
+                  Yehia Elsokkary
+                </p>
+                <p className="text-xs" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+                  Cairo, Egypt
+                </p>
+              </div>
+            </div>
+
             <div>
               <p className="section-tag about-text-reveal mb-4">About</p>
               <h2
@@ -120,7 +155,7 @@ export default function About() {
                 <p
                   key={i}
                   className="about-text-reveal text-sm leading-relaxed"
-                  style={{ color: 'var(--text-muted)' }}
+                  style={{ color: i === 2 ? 'var(--text-body)' : 'var(--text-body)', fontStyle: i === 2 ? 'normal' : 'normal' }}
                 >
                   {text}
                 </p>
@@ -134,74 +169,126 @@ export default function About() {
             </div>
           </div>
 
-          {/* Right — identity card stack */}
-          <div
-            ref={cardsRef}
-            className="relative flex items-center justify-center"
-            style={{ perspective: '1200px', minHeight: '380px' }}
-          >
-            {IDENTITY_CARDS.map((card, i) => {
-              const Icon = card.icon
-              return (
-                <motion.div
-                  key={card.title}
-                  className="identity-card absolute w-64 p-6 rounded-2xl"
-                  style={{
-                    background: 'rgba(14,14,26,0.85)',
-                    backdropFilter: 'blur(14px)',
-                    border: `1px solid ${card.color}30`,
-                    borderTop: `2px solid ${card.color}`,
-                    transformOrigin: 'bottom center',
-                    rotate: (i - 1) * 8,
-                    translateX: (i - 1) * 40,
-                    translateY: Math.abs(i - 1) * 16,
-                    zIndex: IDENTITY_CARDS.length - Math.abs(i - 1),
-                  }}
-                  whileHover={{
-                    rotate: 0,
-                    translateX: 0,
-                    translateY: -16,
-                    zIndex: 10,
-                    transition: { duration: 0.35 },
-                  }}
-                >
-                  <div className="flex items-center gap-3 mb-4">
+          {/* Right — identity cards */}
+          <div>
+            {/* Desktop: overlapping fan layout (md+) */}
+            <div
+              ref={cardsRef}
+              className="relative hidden md:flex items-center justify-center"
+              style={{ perspective: '1200px', minHeight: '380px' }}
+            >
+              {IDENTITY_CARDS.map((card, i) => {
+                const Icon = card.icon
+                return (
+                  <motion.div
+                    key={card.title}
+                    className="identity-card absolute w-64 p-6 rounded-2xl"
+                    style={{
+                      background: 'rgba(14,14,26,0.85)',
+                      backdropFilter: 'blur(14px)',
+                      border: `1px solid ${card.color}30`,
+                      borderTop: `2px solid ${card.color}`,
+                      transformOrigin: 'bottom center',
+                      rotate: (i - 1) * 8,
+                      translateX: (i - 1) * 40,
+                      translateY: Math.abs(i - 1) * 16,
+                      zIndex: IDENTITY_CARDS.length - Math.abs(i - 1),
+                    }}
+                    whileHover={{
+                      rotate: 0,
+                      translateX: 0,
+                      translateY: -16,
+                      zIndex: 10,
+                      transition: { duration: 0.35 },
+                    }}
+                  >
+                    <div className="flex items-center gap-3 mb-4">
+                      <div
+                        className="w-8 h-8 flex items-center justify-center rounded-lg flex-shrink-0"
+                        style={{
+                          background: `${card.color}15`,
+                          border: `1px solid ${card.color}30`,
+                        }}
+                      >
+                        <Icon size={16} color={card.color} />
+                      </div>
+                      <h3
+                        className="font-bold text-lg"
+                        style={{ fontFamily: 'var(--font-display)', color: 'var(--text-primary)' }}
+                      >
+                        {card.title}
+                      </h3>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {card.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2.5 py-1 rounded-md text-xs"
+                          style={{
+                            fontFamily: 'var(--font-mono)',
+                            background: `${card.color}12`,
+                            border: `1px solid ${card.color}30`,
+                            color: card.color,
+                          }}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </motion.div>
+                )
+              })}
+            </div>
+
+            {/* Mobile: flat 3-column card grid (< md) */}
+            <div className="grid grid-cols-3 gap-3 md:hidden">
+              {IDENTITY_CARDS.map((card) => {
+                const MIcon = card.icon
+                return (
+                  <div
+                    key={card.title}
+                    className="rounded-2xl p-4 flex flex-col items-center text-center gap-2.5"
+                    style={{
+                      background: 'rgba(14,14,26,0.85)',
+                      backdropFilter: 'blur(14px)',
+                      border: `1px solid ${card.color}30`,
+                      borderTop: `2px solid ${card.color}`,
+                    }}
+                  >
                     <div
-                      className="w-8 h-8 flex items-center justify-center rounded-lg flex-shrink-0"
-                      style={{
-                        background: `${card.color}15`,
-                        border: `1px solid ${card.color}30`,
-                      }}
+                      className="w-8 h-8 flex items-center justify-center rounded-lg"
+                      style={{ background: `${card.color}15`, border: `1px solid ${card.color}30` }}
                     >
-                      <Icon size={16} color={card.color} />
+                      <MIcon size={15} color={card.color} />
                     </div>
                     <h3
-                      className="font-bold text-lg"
+                      className="font-bold text-xs leading-tight"
                       style={{ fontFamily: 'var(--font-display)', color: 'var(--text-primary)' }}
                     >
                       {card.title}
                     </h3>
+                    <div className="flex flex-col gap-1.5 w-full">
+                      {card.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2 py-0.5 rounded-md text-[10px] whitespace-nowrap block"
+                          style={{
+                            fontFamily: 'var(--font-mono)',
+                            background: `${card.color}12`,
+                            border: `1px solid ${card.color}30`,
+                            color: card.color,
+                          }}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {card.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2.5 py-1 rounded-md text-xs"
-                        style={{
-                          fontFamily: 'var(--font-mono)',
-                          background: `${card.color}12`,
-                          border: `1px solid ${card.color}30`,
-                          color: card.color,
-                        }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
-              )
-            })}
+                )
+              })}
+            </div>
           </div>
+
         </div>
       </div>
     </section>

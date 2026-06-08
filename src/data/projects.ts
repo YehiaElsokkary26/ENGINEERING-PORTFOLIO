@@ -14,6 +14,7 @@ export interface Project {
   gradient: [string, string];
   accentColor: string;
   results: { label: string; value: string }[];
+  image?: string;
   github?: string;
   live?: string;
 }

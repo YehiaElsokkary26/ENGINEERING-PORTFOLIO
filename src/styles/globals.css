@@ -5,13 +5,14 @@
    ============================================ */
 :root {
   --bg-void: #030308;
-  --bg-deep: #07070f;
+  --bg-deep: #0d0d20;
   --surface: #0e0e1a;
   --surface-hover: #141428;
   --glow-primary: #4f6ef7;
   --glow-accent: #8b5cf6;
   --glow-warm: #e07b39;
   --text-primary: #f0f0ff;
+  --text-body: #c4c4e0;
   --text-muted: #6b6b8a;
   --border: rgba(79, 110, 247, 0.15);
 

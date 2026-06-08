@@ -6,7 +6,6 @@ import Education from '@/components/sections/Education'
 import Skills from '@/components/sections/Skills'
 import Experience from '@/components/sections/Experience'
 import Projects from '@/components/sections/Projects'
-import ComingSoon from '@/components/sections/ComingSoon'
 import Extracurricular from '@/components/sections/Extracurricular'
 import Contact from '@/components/sections/Contact'
 
@@ -20,7 +19,6 @@ export default function Home() {
         <Skills />
         <Experience />
         <Projects />
-        <ComingSoon />
         <Extracurricular />
         <Contact />
       </main>

@@ -55,7 +55,7 @@ export default function Navbar() {
           }}
         >
           <Link to="/" className="flex-shrink-0">
-            <AgLogo />
+            <YELogo />
           </Link>
 
           {/* Desktop */}
@@ -170,7 +170,7 @@ export default function Navbar() {
   )
 }
 
-function AgLogo() {
+function YELogo() {
   return (
     <svg
       width="52"
@@ -178,38 +178,17 @@ function AgLogo() {
       viewBox="0 0 52 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      aria-label="Antigravity logo"
+      aria-label="Yehia Elsokkary"
     >
-      {/* A */}
-      <path
-        d="M2 28L10 3L18 28"
-        stroke="#F0F0FF"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M5 18H15"
-        stroke="#F0F0FF"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-      />
-      {/* G */}
-      <path
-        d="M44 9C41.5 5 38.5 3.5 35 3.5C28.5 3.5 24 8.5 24 16C24 23.5 28.5 28.5 35 28.5C38 28.5 41 27 44 24.5V16H37"
-        stroke="#4F6EF7"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      {/* Arrow up integrated at G opening */}
-      <path
-        d="M44 9L47 5.5L50 9"
-        stroke="#4F6EF7"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      {/* Y — white */}
+      <path d="M2 3L11 15" stroke="#F0F0FF" strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M20 3L11 15" stroke="#F0F0FF" strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M11 15V29" stroke="#F0F0FF" strokeWidth="2.5" strokeLinecap="round" />
+      {/* E — brand blue */}
+      <path d="M28 3V29" stroke="#4F6EF7" strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M28 3H46" stroke="#4F6EF7" strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M28 16H42" stroke="#4F6EF7" strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M28 29H46" stroke="#4F6EF7" strokeWidth="2.5" strokeLinecap="round" />
     </svg>
   )
 }

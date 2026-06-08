@@ -2,7 +2,7 @@ import { lazy, Suspense } from 'react'
 import { motion } from 'framer-motion'
 import { scrollToSection } from '@/hooks/useSmoothScroll'
 import GlowButton from '@/components/ui/GlowButton'
-import { Download } from 'lucide-react'
+import { Download, ArrowRight } from 'lucide-react'
 
 
 const HeroScene = lazy(() => import('@/components/three/HeroScene'))
@@ -102,27 +102,35 @@ export default function Hero() {
           </motion.p>
 
           <motion.div
-            className="flex items-center gap-3 flex-wrap"
+            className="flex items-center gap-4 flex-wrap"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.82, duration: 0.55, ease: 'easeOut' }}
           >
+            {/* Primary CTA */}
             <GlowButton variant="filled" onClick={() => scrollToSection('#projects')}>
               View Projects
+              <ArrowRight size={15} />
             </GlowButton>
+
+            {/* Secondary CTA */}
             <GlowButton variant="outlined" onClick={() => scrollToSection('#contact')}>
               Contact Me
             </GlowButton>
-            <GlowButton
-              variant="outlined"
+
+            {/* Tertiary — plain text link */}
+            <motion.a
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="border-[rgba(16,212,160,0.4)] text-[#10d4a0]"
+              className="inline-flex items-center gap-1.5 text-sm"
+              style={{ color: '#10d4a0', fontFamily: 'var(--font-mono)' }}
+              whileHover={{ x: 2 }}
+              transition={{ duration: 0.2 }}
             >
-              <Download size={14} />
+              <Download size={13} />
               Resume
-            </GlowButton>
+            </motion.a>
           </motion.div>
         </div>
       </div>

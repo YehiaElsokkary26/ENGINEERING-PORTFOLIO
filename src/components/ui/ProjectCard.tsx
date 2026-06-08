@@ -36,28 +36,57 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
   return (
     <div ref={cardRef}>
       <motion.div
-        className="relative flex flex-col md:flex-row rounded-3xl overflow-hidden"
+        className={`relative flex flex-col rounded-3xl overflow-hidden ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}
         style={{
           background: 'var(--surface)',
           border: '1px solid var(--border)',
           minHeight: '420px',
-          flexDirection: isEven ? 'row' : 'row-reverse',
         }}
         whileHover={{
           borderColor: 'rgba(79,110,247,0.4)',
           boxShadow: '0 0 40px rgba(79,110,247,0.15), 0 20px 60px rgba(0,0,0,0.4)',
-          y: -8,
+          y: -6,
         }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
       >
-        {/* Gradient visual panel */}
-        <div className="relative md:w-[45%] min-h-[240px] flex-shrink-0 overflow-hidden">
-          <div
-            className="absolute inset-0"
-            style={{
-              background: `linear-gradient(135deg, ${project.gradient[0]} 0%, ${project.gradient[1]} 100%)`,
-            }}
-          />
+        {/* Visual panel — screenshot when available, gradient fallback */}
+        <div className="relative md:w-[45%] min-h-[220px] md:min-h-0 flex-shrink-0 overflow-hidden">
+          {project.image ? (
+            <>
+              <img
+                src={project.image}
+                alt={`${project.title} preview`}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              {/* Tinted overlay so text remains readable if overlaid */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: `linear-gradient(135deg, ${project.gradient[0]}cc 0%, ${project.gradient[1]}99 100%)`,
+                }}
+              />
+            </>
+          ) : (
+            <>
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: `linear-gradient(135deg, ${project.gradient[0]} 0%, ${project.gradient[1]} 100%)`,
+                }}
+              />
+              {/* Subtle grid texture on gradient-only cards */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage:
+                    'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)',
+                  backgroundSize: '36px 36px',
+                }}
+              />
+            </>
+          )}
+
+          {/* Hover shimmer overlay */}
           <motion.div
             className="absolute inset-0"
             style={{
@@ -67,12 +96,13 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             whileHover={{ opacity: 1 }}
             transition={{ duration: 0.4 }}
           />
-          {/* Number overlay */}
+
+          {/* Project number watermark */}
           <div
             className="absolute bottom-4 left-5 text-7xl font-bold select-none"
             style={{
               fontFamily: 'var(--font-mono)',
-              color: 'rgba(255,255,255,0.07)',
+              color: 'rgba(255,255,255,0.08)',
               lineHeight: 1,
             }}
           >
@@ -80,8 +110,9 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           </div>
         </div>
 
-        {/* Info */}
-        <div className="flex flex-col justify-center gap-4 p-8 md:p-10 flex-1">
+        {/* Info panel */}
+        <div className="flex flex-col justify-center gap-4 p-7 md:p-10 flex-1">
+          {/* Category + number */}
           <div className="flex items-center gap-3">
             <span
               className="text-xs px-3 py-1 rounded-full whitespace-nowrap"
@@ -102,20 +133,23 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             </span>
           </div>
 
+          {/* Title — reduced from text-3xl/4xl to text-xl/2xl for better proportion */}
           <h3
-            className="text-3xl md:text-4xl font-bold tracking-tight"
+            className="text-xl md:text-2xl font-bold tracking-tight leading-snug"
             style={{ fontFamily: 'var(--font-display)', color: 'var(--text-primary)' }}
           >
             {project.title}
           </h3>
 
+          {/* Tagline — increased from text-sm to text-base, brighter color */}
           <p
-            className="text-sm leading-relaxed"
-            style={{ color: 'var(--text-muted)', maxWidth: '36ch' }}
+            className="text-base leading-relaxed"
+            style={{ color: 'var(--text-body)', maxWidth: '42ch' }}
           >
             {project.tagline}
           </p>
 
+          {/* Tech stack pills */}
           <div className="flex flex-wrap gap-2">
             {project.tech.slice(0, 5).map((t) => (
               <span
@@ -133,7 +167,8 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             ))}
           </div>
 
-          <div className="flex items-center gap-4 mt-2 flex-wrap">
+          {/* Actions */}
+          <div className="flex items-center gap-4 mt-1 flex-wrap">
             <motion.button
               onClick={() => navigate(`/project/${project.id}`)}
               className="flex items-center gap-2 w-fit text-sm font-semibold group"
