@@ -22,7 +22,13 @@ export default function Navbar() {
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY
-      setVisible(y < lastY || y < 80)
+      if (y < 80) {
+        setVisible(true)
+      } else if (y > lastY + 8) {
+        setVisible(false)
+      } else if (lastY > y + 2) {
+        setVisible(true)
+      }
       setLastY(y)
     }
     window.addEventListener('scroll', onScroll, { passive: true })
@@ -99,14 +105,16 @@ export default function Navbar() {
           </ul>
 
           {/* Mobile toggle */}
-          <button
+          <motion.button
             className="md:hidden p-2 transition-colors"
             style={{ color: 'var(--text-primary)' }}
             onClick={() => setMobileOpen((v) => !v)}
+            whileTap={{ scale: 0.88, opacity: 0.7 }}
+            transition={{ duration: 0.12 }}
             aria-label="Toggle menu"
           >
-            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
+            {mobileOpen ? <X size={20} aria-hidden={true} /> : <Menu size={20} aria-hidden={true} />}
+          </motion.button>
         </div>
       </motion.nav>
 

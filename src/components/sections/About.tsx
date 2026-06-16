@@ -95,9 +95,9 @@ export default function About() {
           <div className="flex flex-col gap-7">
 
             {/* Portrait slot — shows headshot or YE monogram fallback */}
-            <div className="about-text-reveal flex items-center gap-3">
+            <div className="about-text-reveal flex items-center gap-4">
               <div
-                className="relative w-14 h-14 rounded-full overflow-hidden flex-shrink-0"
+                className="relative w-20 h-20 rounded-full overflow-hidden flex-shrink-0"
                 style={{ border: '2px solid rgba(79,110,247,0.35)', background: 'rgba(79,110,247,0.06)' }}
               >
                 {!photoFailed ? (
@@ -109,7 +109,7 @@ export default function About() {
                   />
                 ) : (
                   <span
-                    className="absolute inset-0 flex items-center justify-center text-sm font-bold"
+                    className="absolute inset-0 flex items-center justify-center text-base font-bold"
                     style={{ fontFamily: 'var(--font-display)', color: 'var(--glow-primary)' }}
                   >
                     YE
@@ -117,10 +117,10 @@ export default function About() {
                 )}
               </div>
               <div>
-                <p className="text-sm font-semibold" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}>
+                <p className="text-base font-bold" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}>
                   Yehia Elsokkary
                 </p>
-                <p className="text-xs" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+                <p className="text-sm" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
                   Cairo, Egypt
                 </p>
               </div>
@@ -132,7 +132,7 @@ export default function About() {
                 className="about-text-reveal text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
                 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-primary)' }}
               >
-                Computer Engineering student —{' '}
+                Computer Science &amp; Engineering student —{' '}
                 <span
                   style={{
                     background: 'linear-gradient(135deg, #8aaeff, #8B5CF6)',
@@ -148,7 +148,7 @@ export default function About() {
 
             <div className="flex flex-col gap-4">
               {[
-                "Third-year Computer Engineering student at the German University in Cairo (GUC) — building with Java, Python, and full-stack React & Node.js. From scheduling platforms to digital board games and IoT circuits, I engineer solutions to problems worth solving.",
+                "Third-year Computer Science & Engineering student at the German University in Cairo (GUC) — building with Java, Python, and full-stack React & Node.js. From scheduling platforms to digital board games and IoT circuits, I engineer solutions to problems worth solving.",
                 "Every project starts the same way: map the constraints, design before coding, iterate until it works. I've shipped full-stack platforms, game engines, and database systems — both solo and in teams.",
                 "Outside the IDE, I direct short films, shoot photography, and lead marketing teams at IEEE and MUN. Creativity and engineering aren't separate disciplines — they're the same skill applied to different materials.",
               ].map((text, i) => (
@@ -162,7 +162,7 @@ export default function About() {
               ))}
             </div>
 
-            <div className="about-text-reveal grid grid-cols-3 gap-3">
+            <div className="about-text-reveal grid grid-cols-3 gap-2">
               {STATS.map((stat) => (
                 <StatCard key={stat.label} value={stat.value} label={stat.label} />
               ))}
@@ -241,7 +241,7 @@ export default function About() {
             </div>
 
             {/* Mobile: flat 3-column card grid (< md) */}
-            <div className="grid grid-cols-3 gap-3 md:hidden">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:hidden">
               {IDENTITY_CARDS.map((card) => {
                 const MIcon = card.icon
                 return (
@@ -271,7 +271,7 @@ export default function About() {
                       {card.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-2 py-0.5 rounded-md text-[10px] whitespace-nowrap block"
+                          className="px-2 py-0.5 rounded-md text-xs whitespace-nowrap block"
                           style={{
                             fontFamily: 'var(--font-mono)',
                             background: `${card.color}12`,

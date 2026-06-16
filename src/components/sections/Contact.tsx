@@ -82,7 +82,7 @@ export default function Contact() {
 
       <div className="container-wide relative z-10">
         {/* Heading */}
-        <div className="mb-14">
+        <div className="mb-12">
           <p className="section-tag mb-4">Contact</p>
           <h2
             className="text-3xl md:text-5xl font-bold tracking-tight mb-3"
@@ -107,7 +107,7 @@ export default function Contact() {
                   href={card.href}
                   target={card.external ? '_blank' : undefined}
                   rel={card.external ? 'noopener noreferrer' : undefined}
-                  className="flex items-center gap-4 p-5 rounded-2xl"
+                  className="flex items-center gap-5 p-6 rounded-2xl"
                   style={{
                     background: 'rgba(14,14,26,0.7)',
                     backdropFilter: 'blur(14px)',
@@ -132,7 +132,7 @@ export default function Contact() {
                   </div>
                   <div className="min-w-0">
                     <p
-                      className="text-xs mb-0.5 uppercase tracking-widest"
+                      className="text-xs mb-0.5 uppercase label-tag"
                       style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}
                     >
                       {card.label}
@@ -151,7 +151,7 @@ export default function Contact() {
 
           {/* Languages card — takes 1 col */}
           <div
-            className="rounded-2xl p-6 flex flex-col justify-between"
+            className="rounded-2xl p-6 flex flex-col justify-start gap-5"
             style={{
               background: 'rgba(14,14,26,0.7)',
               backdropFilter: 'blur(14px)',
@@ -159,12 +159,12 @@ export default function Contact() {
             }}
           >
             <p
-              className="text-xs uppercase tracking-widest mb-5"
+              className="text-xs uppercase label-tag mb-5"
               style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}
             >
               Languages
             </p>
-            <div className="flex flex-col gap-5 flex-1 justify-center">
+            <div className="flex flex-col gap-7">
               {LANGUAGES.map((lang) => (
                 <div key={lang.name} className="flex items-center justify-between gap-4">
                   <div className="flex items-center gap-2.5">
@@ -226,7 +226,7 @@ export default function Contact() {
               }}
               transition={{ duration: 0.2 }}
             >
-              <Icon size={15} />
+              <Icon size={15} aria-hidden={true} />
             </motion.a>
           ))}
         </div>

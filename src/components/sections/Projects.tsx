@@ -15,7 +15,7 @@ export default function Projects() {
       style={{ background: 'var(--bg-void)' }}
     >
       <div className="container-wide">
-        <div className="mb-14">
+        <div className="mb-16">
           <p className="section-tag mb-4">Selected Work</p>
           <h2
             className="text-3xl md:text-5xl font-bold tracking-tight mb-3"

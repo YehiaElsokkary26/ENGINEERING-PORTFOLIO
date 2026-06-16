@@ -7,7 +7,7 @@ interface SkillColumnProps {
 export default function SkillColumn({ domain }: SkillColumnProps) {
   return (
     <div
-      className="flex flex-col gap-5 p-6 rounded-2xl h-full skill-column"
+      className="flex flex-col gap-6 p-8 rounded-2xl h-full skill-column"
       style={{
         background: 'var(--surface)',
         border: '1px solid var(--border)',
@@ -40,12 +40,12 @@ export default function SkillColumn({ domain }: SkillColumnProps) {
         {domain.skills.map((skill) => (
           <span
             key={skill}
-            className="px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap"
+            className="px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap"
             style={{
               fontFamily: 'var(--font-mono)',
-              background: `${domain.accentColor}0d`,
+              background: `${domain.accentColor}15`,
               border: `1px solid ${domain.accentColor}25`,
-              color: 'var(--text-muted)',
+              color: 'var(--text-body)',
             }}
           >
             {skill}

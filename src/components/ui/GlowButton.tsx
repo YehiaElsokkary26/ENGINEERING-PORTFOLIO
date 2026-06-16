@@ -33,12 +33,12 @@ export default function GlowButton({
       : {
           background: 'rgba(14,14,26,0.5)',
           border: '1px solid rgba(255,255,255,0.18)',
-          color: 'rgba(240,240,255,0.72)',
+          color: 'var(--text-primary)',
           backdropFilter: 'blur(12px)',
         }
 
   const sharedProps = {
-    className: `inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold tracking-wide whitespace-nowrap min-w-[120px] ${className}`,
+    className: `inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-sm font-semibold tracking-wide whitespace-nowrap min-w-[120px] ${className}`,
     style: { ...base, fontFamily: 'var(--font-body)' } as CSSProperties,
     whileHover: {
       scale: 1.02,

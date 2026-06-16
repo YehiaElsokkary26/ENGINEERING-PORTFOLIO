@@ -13,7 +13,7 @@
   --glow-warm: #e07b39;
   --text-primary: #f0f0ff;
   --text-body: #c4c4e0;
-  --text-muted: #6b6b8a;
+  --text-muted: #9090b0;
   --border: rgba(79, 110, 247, 0.15);
 
   --font-display: "Space Grotesk", sans-serif;
@@ -43,9 +43,8 @@ body {
   background-color: var(--bg-void);
   color: var(--text-primary);
   font-family: var(--font-body);
-  line-height: 1.6;
+  line-height: 1.75;
   overflow-x: hidden;
-  cursor: none; /* hide default cursor — custom cursor used */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -96,7 +95,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .text-display {
   font-family: var(--font-display);
-  font-size: clamp(3.5rem, 8vw, 6.25rem);
+  font-size: clamp(2.5rem, 8vw, 6.25rem);
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -119,6 +118,11 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.2em;
   color: var(--glow-primary);
   text-transform: uppercase;
+}
+
+/* Shared tracking for small uppercase labels — color set via inline style */
+.label-tag {
+  letter-spacing: 0.15em;
 }
 
 .glow-border {
@@ -175,7 +179,11 @@ h1, h2, h3, h4, h5, h6 {
    SECTION LAYOUT
    ============================================ */
 .section-padding {
-  padding: 7rem 0;
+  padding: 8rem 0;
+}
+
+.section-padding p {
+  line-height: 1.85;
 }
 
 .container-wide {
@@ -186,7 +194,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 768px) {
   .section-padding {
-    padding: 4rem 0;
+    padding: 5rem 0;
   }
   .container-wide {
     padding: 0 1.25rem;
@@ -194,10 +202,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ============================================
-   CURSOR POINTER RESTORATION FOR LINKS
+   CUSTOM CURSOR — fine-pointer devices only
+   Touch / stylus users retain OS cursor.
    ============================================ */
-a, button, [role="button"] {
-  cursor: none;
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+  a, button, [role="button"] {
+    cursor: none;
+  }
 }
 
 /* ============================================
@@ -207,9 +221,12 @@ a, button, [role="button"] {
    keyboard navigation cue. Make them prominent.
    ============================================ */
 :focus-visible {
-  outline: 2px solid var(--glow-primary);
+  outline: 2px solid #ffffff;
   outline-offset: 3px;
   border-radius: 6px;
+  /* white ring provides contrast on any dark bg;
+     blue halo preserves brand colour */
+  box-shadow: 0 0 0 4px rgba(79, 110, 247, 0.5);
 }
 
 /* Suppress focus ring on mouse clicks (only show for keyboard) */
@@ -247,4 +264,19 @@ a, button, [role="button"] {
 
 .animate-scroll-line {
   animation: scroll-line 2s ease-in-out infinite;
+}
+
+/* ============================================
+   REDUCED MOTION (WCAG 2.3.3)
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .animate-scroll-line,
+  .animate-float,
+  .animate-pulse-glow {
+    animation: none;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }

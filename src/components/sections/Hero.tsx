@@ -47,13 +47,15 @@ export default function Hero() {
             Open to Engineering Roles &amp; Internships
           </motion.p>
 
-          <h1
-            className="text-display mb-3"
-            aria-label={NAME_WORDS.map((h) => h.word).join(' ')}
-          >
+          <h1 className="text-display mb-3" style={{ maxWidth: '14ch' }}>
+            {/* aria-hidden on each span: the animation wrappers are purely
+                decorative. The sr-only span below provides the AT label so
+                screen readers announce "Yehia Elsokkary." as a single unit
+                rather than as two separate staggered fragments. */}
             {NAME_WORDS.map(({ word, gradient }, i) => (
               <motion.span
                 key={word}
+                aria-hidden={true}
                 className="inline-block mr-[0.22em] last:mr-0"
                 initial={{ opacity: 0, y: 48 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -80,16 +82,20 @@ export default function Hero() {
                 )}
               </motion.span>
             ))}
+            {/* Accessible text — visually hidden, read by screen readers */}
+            <span className="sr-only">
+              {NAME_WORDS.map((h) => h.word).join(' ')}
+            </span>
           </h1>
 
           <motion.p
             className="text-xl md:text-2xl font-semibold mb-5"
-            style={{ color: 'rgba(139,92,246,0.9)', fontFamily: 'var(--font-display)' }}
+            style={{ color: 'var(--text-body)', fontFamily: 'var(--font-display)', maxWidth: '34ch' }}
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.52, duration: 0.55, ease: 'easeOut' }}
           >
-            Computer Engineering Student &amp; Developer
+            Computer Science &amp; Engineering Student
           </motion.p>
 
           <motion.p
@@ -98,7 +104,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.66, duration: 0.65, ease: 'easeOut' }}
           >
-            Computer Engineering student at GUC — building full-stack applications, Java systems, and software that actually ships.
+            Computer Science &amp; Engineering student at GUC — building full-stack applications, Java systems, and software that actually ships.
           </motion.p>
 
           <motion.div
@@ -118,19 +124,16 @@ export default function Hero() {
               Contact Me
             </GlowButton>
 
-            {/* Tertiary — plain text link */}
-            <motion.a
+            {/* Tertiary — outlined button, same visual level as Contact Me */}
+            <GlowButton
+              variant="outlined"
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm"
-              style={{ color: '#10d4a0', fontFamily: 'var(--font-mono)' }}
-              whileHover={{ x: 2 }}
-              transition={{ duration: 0.2 }}
             >
-              <Download size={13} />
-              Resume
-            </motion.a>
+              <Download size={14} />
+              Download CV
+            </GlowButton>
           </motion.div>
         </div>
       </div>

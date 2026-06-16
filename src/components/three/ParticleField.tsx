@@ -38,7 +38,14 @@ export default function ParticleField() {
 
   useEffect(() => () => geometry.dispose(), [geometry])
 
+  // Reduced motion check AFTER all hooks (Rules of Hooks)
+  // HeroScene also returns null early, so this is a belt-and-suspenders guard
+  const prefersReduced =
+    typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
   useFrame(({ clock }) => {
+    if (prefersReduced) return
     const t   = clock.elapsedTime
     const attr = geometry.getAttribute('position') as THREE.BufferAttribute
     const arr  = attr.array as Float32Array
@@ -81,6 +88,8 @@ export default function ParticleField() {
 
     attr.needsUpdate = true
   })
+
+  if (prefersReduced) return null
 
   return (
     <points geometry={geometry}>

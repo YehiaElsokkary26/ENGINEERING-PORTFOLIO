@@ -18,11 +18,14 @@ function AnimatedRoutes() {
   )
 }
 
+const isFinePointer =
+  typeof window !== 'undefined' && window.matchMedia('(pointer: fine)').matches
+
 function AppShell() {
   useSmoothScroll()
   return (
     <>
-      <CustomCursor />
+      {isFinePointer && <CustomCursor />}
       <Navbar />
       <AnimatedRoutes />
     </>

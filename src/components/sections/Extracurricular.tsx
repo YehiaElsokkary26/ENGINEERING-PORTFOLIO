@@ -63,7 +63,7 @@ export default function Extracurricular() {
       }}
     >
       <div className="container-wide">
-        <div className="mb-14">
+        <div className="mb-10">
           <p className="section-tag mb-4">Beyond the Code</p>
           <h2
             className="text-3xl md:text-5xl font-bold tracking-tight mb-3"
@@ -83,7 +83,7 @@ export default function Extracurricular() {
             return (
               <motion.div
                 key={cat.label}
-                className="extra-card flex flex-col rounded-2xl p-7 h-full"
+                className="extra-card flex flex-col rounded-2xl p-6 md:p-9 h-full"
                 style={{
                   background: 'rgba(14,14,26,0.7)',
                   backdropFilter: 'blur(14px)',
@@ -98,7 +98,7 @@ export default function Extracurricular() {
                 transition={{ duration: 0.25 }}
               >
                 {/* Header */}
-                <div className="flex items-center gap-3 mb-5">
+                <div className="flex items-center gap-3 mb-7">
                   <div
                     className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
                     style={{
@@ -109,15 +109,15 @@ export default function Extracurricular() {
                     <Icon size={17} color={cat.color} />
                   </div>
                   <h3
-                    className="font-bold text-xs uppercase tracking-wider"
-                    style={{ fontFamily: 'var(--font-mono)', color: cat.color }}
+                    className="font-bold text-xs uppercase label-tag"
+                    style={{ fontFamily: 'var(--font-display)', color: cat.color }}
                   >
                     {cat.label}
                   </h3>
                 </div>
 
                 {/* Items */}
-                <ul className="flex flex-col gap-3 flex-1">
+                <ul className="flex flex-col gap-4 flex-1">
                   {cat.items.map((item, i) => (
                     <li key={i} className="flex items-start gap-2.5">
                       <span

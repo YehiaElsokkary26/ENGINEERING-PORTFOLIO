@@ -7,7 +7,7 @@ import { GraduationCap, Award, BookOpen } from 'lucide-react'
 const EDUCATION = [
   {
     institution: 'German University in Cairo',
-    degree: 'Bachelor of Computer Science and Engineering',
+    degree: 'Bachelor of Science in Computer Science and Engineering',
     period: 'Sept 2023 – July 2028',
     location: 'Cairo, Egypt',
     detail: '3rd Year · GPA: 2.3 on German Scale (1.0 = best · equivalent to B+ in US system)',
@@ -61,7 +61,7 @@ export default function Education() {
       }}
     >
       <div className="container-wide">
-        <div className="mb-14">
+        <div className="mb-16">
           <p className="section-tag mb-4">Education</p>
           <h2
             className="text-3xl md:text-5xl font-bold tracking-tight mb-3"
@@ -74,13 +74,13 @@ export default function Education() {
           </p>
         </div>
 
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-7">
           {EDUCATION.map((edu) => {
             const Icon = edu.icon
             return (
               <motion.div
                 key={edu.institution}
-                className="edu-card rounded-2xl p-7 md:p-8"
+                className="edu-card rounded-2xl p-6 md:p-10"
                 style={{
                   background: 'rgba(14,14,26,0.7)',
                   backdropFilter: 'blur(14px)',
@@ -93,7 +93,7 @@ export default function Education() {
                 }}
                 transition={{ duration: 0.25 }}
               >
-                <div className="flex flex-col md:flex-row md:items-start gap-5">
+                <div className="flex flex-col md:flex-row md:items-start gap-7">
                   {/* Icon */}
                   <div
                     className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
@@ -107,7 +107,7 @@ export default function Education() {
 
                   {/* Content */}
                   <div className="flex-1 min-w-0">
-                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-5">
                       <div className="min-w-0">
                         <h3
                           className="text-lg md:text-xl font-bold mb-1 leading-tight"
@@ -115,30 +115,30 @@ export default function Education() {
                         >
                           {edu.institution}
                         </h3>
-                        <p className="text-sm font-medium" style={{ color: edu.accentColor }}>
+                        <p className="text-sm font-medium" style={{ color: edu.accentColor, fontFamily: 'var(--font-body)' }}>
                           {edu.degree}
                         </p>
                       </div>
                       <div className="sm:text-right flex-shrink-0">
                         <p
-                          className="text-xs font-mono mb-0.5"
-                          style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}
+                          className="text-sm mb-0.5"
+                          style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-body)' }}
                         >
                           {edu.period}
                         </p>
-                        <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
+                        <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
                           {edu.location}
                         </p>
                       </div>
                     </div>
 
-                    <p className="text-sm mb-4 leading-relaxed" style={{ color: 'var(--text-body)' }}>
+                    <p className="text-sm mb-6 leading-relaxed" style={{ color: 'var(--text-body)' }}>
                       {edu.detail}
                     </p>
 
                     {edu.badge && (
                       <div
-                        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg mb-4 text-xs font-medium whitespace-nowrap"
+                        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg mb-4 text-sm font-medium whitespace-nowrap"
                         style={{
                           background: `${edu.accentColor}12`,
                           border: `1px solid ${edu.accentColor}30`,
@@ -157,7 +157,7 @@ export default function Education() {
                           {edu.courses.map((course) => (
                             <span
                               key={course}
-                              className="px-3 py-1 rounded-full text-xs whitespace-nowrap"
+                              className="px-3 py-1 rounded-full text-sm whitespace-nowrap"
                               style={{
                                 fontFamily: 'var(--font-mono)',
                                 background: 'rgba(255,255,255,0.04)',

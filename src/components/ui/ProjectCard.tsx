@@ -50,7 +50,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         transition={{ duration: 0.3, ease: 'easeOut' }}
       >
         {/* Visual panel — screenshot when available, gradient fallback */}
-        <div className="relative md:w-[45%] min-h-[220px] md:min-h-0 flex-shrink-0 overflow-hidden">
+        <div className="relative md:w-[45%] min-h-[140px] md:min-h-0 flex-shrink-0 overflow-hidden">
           {project.image ? (
             <>
               <img
@@ -111,7 +111,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
 
         {/* Info panel */}
-        <div className="flex flex-col justify-center gap-4 p-7 md:p-10 flex-1">
+        <div className="flex flex-col justify-center gap-5 p-6 md:p-8 flex-1">
           {/* Category + number */}
           <div className="flex items-center gap-3">
             <span
@@ -171,7 +171,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           <div className="flex items-center gap-4 mt-1 flex-wrap">
             <motion.button
               onClick={() => navigate(`/project/${project.id}`)}
-              className="flex items-center gap-2 w-fit text-sm font-semibold group"
+              className="flex items-center gap-2 text-sm font-semibold group py-2 pr-2 -ml-1"
               style={{ color: project.accentColor, fontFamily: 'var(--font-body)' }}
               whileHover={{ x: 4 }}
               transition={{ duration: 0.2 }}
@@ -189,7 +189,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${project.title} GitHub repository`}
-                className="flex items-center gap-1.5 text-xs transition-colors duration-200"
+                className="flex items-center gap-1.5 text-xs transition-colors duration-200 py-2 px-1"
                 style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text-primary)')}
                 onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}
@@ -205,7 +205,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${project.title} live demo`}
-                className="flex items-center gap-1.5 text-xs transition-colors duration-200"
+                className="flex items-center gap-1.5 text-xs transition-colors duration-200 py-2 px-1"
                 style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text-primary)')}
                 onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}

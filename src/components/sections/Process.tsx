@@ -35,7 +35,7 @@ export default function Process() {
     () => {
       STEPS.forEach((_, i) => {
         ScrollTrigger.create({
-          trigger: `#step-${i}`,
+          trigger: `#step-desktop-${i}`,
           start: 'top 55%',
           end: 'bottom 45%',
           onEnter: () => setActiveStep(i),
@@ -84,7 +84,7 @@ export default function Process() {
         <div className="hidden lg:grid grid-cols-4 gap-6">
           {STEPS.map((step, i) => (
             <motion.div
-              id={`step-${i}`}
+              id={`step-desktop-${i}`}
               key={step.number}
               className="process-step flex flex-col gap-4 p-6 rounded-2xl relative"
               animate={{
@@ -118,15 +118,15 @@ export default function Process() {
                 className="font-bold text-base"
                 style={{
                   fontFamily: 'var(--font-display)',
-                  color: activeStep === i ? 'var(--text-primary)' : 'var(--text-muted)',
+                  color: activeStep === i ? 'var(--text-primary)' : 'var(--text-body)',
                   transition: 'color 0.35s',
                 }}
               >
                 {step.title}
               </h3>
               <p
-                className="text-xs leading-relaxed"
-                style={{ color: 'var(--text-muted)' }}
+                className="text-sm leading-relaxed"
+                style={{ color: 'var(--text-body)' }}
               >
                 {step.description}
               </p>
@@ -138,7 +138,7 @@ export default function Process() {
         <div className="flex flex-col gap-4 lg:hidden">
           {STEPS.map((step, i) => (
             <div
-              id={`step-${i}`}
+              id={`step-mobile-${i}`}
               key={step.number}
               className="process-step flex gap-5 p-5 rounded-2xl"
               style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
@@ -160,7 +160,7 @@ export default function Process() {
                 >
                   {step.title}
                 </h3>
-                <p className="text-xs leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-body)' }}>
                   {step.description}
                 </p>
               </div>
