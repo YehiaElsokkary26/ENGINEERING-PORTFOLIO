@@ -2,15 +2,28 @@ import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
-import { Shield, Camera, Film, TrendingUp, Building2 } from 'lucide-react'
+import { Shield, Camera, Film, TrendingUp, Building2, Users } from 'lucide-react'
+import type { ComponentType } from 'react'
 
-const ENGINEERING = [
+interface Exp {
+  company: string
+  role: string
+  period: string
+  accentColor: string
+  icon: ComponentType<{ size?: number; color?: string }>
+  bullets: string[]
+  tags: string[]
+  image?: string
+}
+
+const ENGINEERING: Exp[] = [
   {
     company: 'CYSHEILD',
     role: 'Cyber Security & AI Intern',
     period: 'July 2025 – August 2025',
     accentColor: '#4F6EF7',
     icon: Shield,
+    image: '/images/experience/cyshield.jpg',
     bullets: [
       'Participated in hands-on cybersecurity and AI-powered threat detection training led by industry professionals.',
       'Gained experience in threat analysis, security fundamentals, and AI-based anomaly detection systems.',
@@ -20,13 +33,14 @@ const ENGINEERING = [
   },
 ]
 
-const MARKETING = [
+const MARKETING: Exp[] = [
   {
     company: 'ELARABY',
     role: 'Summer Internship Trainee',
     period: 'Aug 2025 – Sept 2025',
     accentColor: '#E07B39',
     icon: TrendingUp,
+    image: '/images/experience/elaraby.jpg',
     bullets: [
       'Learned social media marketing, branding, and audience engagement strategies.',
       'Assisted with marketing campaigns and content planning in a professional business environment.',
@@ -73,7 +87,36 @@ const MARKETING = [
   },
 ]
 
-function ExpCard({ exp }: { exp: typeof ENGINEERING[number] }) {
+const VOLUNTEERING: Exp[] = [
+  {
+    company: 'Riseup Summit',
+    role: 'Event Volunteer',
+    period: '2025',
+    accentColor: '#10d4a0',
+    icon: Users,
+    image: '/images/experience/riseup.jpg',
+    bullets: [
+      "Volunteered at one of the Middle East's largest startup and innovation summits.",
+      'Supported event operations, logistics, and attendee experience across the venue.',
+    ],
+    tags: ['Volunteering', 'Events', 'Startups', 'Innovation'],
+  },
+  {
+    company: 'SYNC Summit',
+    role: 'Event Volunteer',
+    period: '2025',
+    accentColor: '#8B5CF6',
+    icon: Users,
+    image: '/images/experience/sync.jpg',
+    bullets: [
+      'Volunteered at SYNC Summit, a major creative and media industry conference.',
+      'Contributed to team coordination and on-ground event support.',
+    ],
+    tags: ['Volunteering', 'Events', 'Media', 'Creative Industry'],
+  },
+]
+
+function ExpCard({ exp }: { exp: Exp }) {
   const Icon = exp.icon
   return (
     <motion.div
@@ -108,17 +151,35 @@ function ExpCard({ exp }: { exp: typeof ENGINEERING[number] }) {
                 {exp.role}
               </p>
             </div>
-            <span
-              className="inline-flex items-center px-3 py-1 rounded-full text-xs whitespace-nowrap self-start"
-              style={{
-                fontFamily: 'var(--font-body)',
-                background: `${exp.accentColor}12`,
-                border: `1px solid ${exp.accentColor}25`,
-                color: exp.accentColor,
-              }}
-            >
-              {exp.period}
-            </span>
+
+            {/* Period + optional photo thumbnail */}
+            <div className="flex flex-col items-start sm:items-end gap-2 flex-shrink-0">
+              <span
+                className="inline-flex items-center px-3 py-1 rounded-full text-xs whitespace-nowrap"
+                style={{
+                  fontFamily: 'var(--font-body)',
+                  background: `${exp.accentColor}12`,
+                  border: `1px solid ${exp.accentColor}25`,
+                  color: exp.accentColor,
+                }}
+              >
+                {exp.period}
+              </span>
+              {exp.image && (
+                <div
+                  className="w-28 h-18 rounded-xl overflow-hidden flex-shrink-0"
+                  style={{ border: `1px solid ${exp.accentColor}25` }}
+                >
+                  <img
+                    src={exp.image}
+                    alt={`${exp.company} — on-site photo`}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    style={{ display: 'block' }}
+                  />
+                </div>
+              )}
+            </div>
           </div>
 
           <ul className="flex flex-col gap-4 mb-7">
@@ -197,7 +258,7 @@ export default function Experience() {
           </p>
         </div>
 
-        {/* Engineering Related divider */}
+        {/* Engineering Related */}
         <div className="flex items-center gap-4 mb-8">
           <div className="h-px flex-1" style={{ background: 'var(--border)' }} />
           <span className="section-tag">Engineering Related</span>
@@ -208,7 +269,7 @@ export default function Experience() {
           {ENGINEERING.map((exp) => <ExpCard key={exp.company} exp={exp} />)}
         </div>
 
-        {/* Other divider */}
+        {/* Other */}
         <div className="flex items-center gap-4 my-10">
           <div className="h-px flex-1" style={{ background: 'var(--border)' }} />
           <span className="section-tag">Other</span>
@@ -217,6 +278,17 @@ export default function Experience() {
 
         <div className="flex flex-col gap-7">
           {MARKETING.map((exp) => <ExpCard key={exp.company} exp={exp} />)}
+        </div>
+
+        {/* Volunteering */}
+        <div className="flex items-center gap-4 my-10">
+          <div className="h-px flex-1" style={{ background: 'var(--border)' }} />
+          <span className="section-tag">Volunteering</span>
+          <div className="h-px flex-1" style={{ background: 'var(--border)' }} />
+        </div>
+
+        <div className="flex flex-col gap-7">
+          {VOLUNTEERING.map((exp) => <ExpCard key={exp.company} exp={exp} />)}
         </div>
       </div>
     </section>
