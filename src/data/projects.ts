@@ -17,6 +17,7 @@ export interface Project {
   image?: string;
   github?: string;
   live?: string;
+  status?: string;
 }
 
 export const projects: Project[] = [
@@ -38,6 +39,7 @@ export const projects: Project[] = [
     role: 'Full-Stack Developer',
     gradient: ['#0a1628', '#0a1e12'],
     accentColor: '#10d4a0',
+    github: 'https://github.com/YehiaElsokkary26/NAZAMLY---NEWEST-TRIAL',
     results: [
       { label: 'Stack', value: 'React + Node' },
       { label: 'Type', value: 'Full-Stack' },
@@ -115,6 +117,81 @@ export const projects: Project[] = [
       { label: 'Status', value: 'Live' },
       { label: 'Type', value: 'Personal' },
       { label: 'Stack', value: 'JS + HTML' },
+    ],
+  },
+  {
+    id: 'special-folio',
+    number: '05',
+    title: 'Special Folio',
+    tagline: 'A collaborative platform built as part of a university software engineering team.',
+    category: 'WEBSITE',
+    description:
+      'A software engineering group project — a collaborative platform built as part of a university team. Designed and developed with a focus on clean architecture, shared conventions, and real team coordination.',
+    challenge:
+      'Coordinating a multi-person engineering team around a shared codebase requires alignment on conventions, tooling, and responsibilities before any useful code can be written.',
+    solution:
+      'Collaborated in a structured team environment applying software engineering principles — version control workflows, modular design, and agile practices — to deliver a functioning platform as a cohesive group.',
+    tech: ['Software Engineering', 'Team Project'],
+    year: 2026,
+    duration: '2026',
+    role: 'Team Member',
+    gradient: ['#0a1628', '#0d1a2e'],
+    accentColor: '#4F6EF7',
+    github: 'https://github.com/Software-Engineering-Spring-2026/The-special-ones',
+    results: [
+      { label: 'Type', value: 'Team Project' },
+      { label: 'Category', value: 'Website' },
+      { label: 'Status', value: 'Complete' },
+    ],
+  },
+  {
+    id: 'cima',
+    number: '06',
+    title: 'CIMA',
+    tagline: 'A cinematic student film platform for discovering and sharing student films.',
+    category: 'WEB APPLICATION',
+    description:
+      'A cinematic student film platform for discovering and sharing student films. Built with a modern stack focused on performance and clean UI.',
+    challenge:
+      'Student film content is scattered across platforms not designed for it. Building a dedicated space that feels cinematic rather than generic required both product thinking and technical execution.',
+    solution:
+      'Built with React, TypeScript, and Supabase for a performant, type-safe full-stack experience. Focused on clean UI and fast content discovery as core product values from the start.',
+    tech: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Supabase'],
+    year: 2026,
+    duration: '2026',
+    role: 'Developer',
+    gradient: ['#110820', '#0a1628'],
+    accentColor: '#8B5CF6',
+    github: 'https://github.com/YehiaElsokkary26/CIMA-',
+    status: 'Work in Progress',
+    results: [
+      { label: 'Stack', value: 'React + Supabase' },
+      { label: 'Status', value: 'WIP' },
+    ],
+  },
+  {
+    id: 'clubify',
+    number: '07',
+    title: 'CLUBIFY',
+    tagline: 'A club management and discovery platform for university students.',
+    category: 'WEB APPLICATION',
+    description:
+      'A club management and discovery platform for university students. Designed to simplify how students find, join, and engage with campus clubs through a unified interface.',
+    challenge:
+      'University students struggle to discover and engage with campus clubs due to fragmented information and no central management layer.',
+    solution:
+      'Designing a unified platform for club discovery and management, currently in active development with a focus on intuitive UX and scalable data architecture.',
+    tech: ['React', 'TypeScript', 'Full-Stack'],
+    year: 2026,
+    duration: '2026',
+    role: 'Developer',
+    gradient: ['#0a1e12', '#0a1628'],
+    accentColor: '#10d4a0',
+    github: 'https://github.com/YehiaElsokkary26/CLUBIFY',
+    status: 'Work in Progress',
+    results: [
+      { label: 'Stack', value: 'Full-Stack' },
+      { label: 'Status', value: 'WIP' },
     ],
   },
 ];
