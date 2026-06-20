@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Mail, Globe, GitBranch, AtSign, Phone, Download } from 'lucide-react'
+import { Mail, Globe, GitBranch, AtSign, Phone } from 'lucide-react'
 
 const CONTACT_CARDS = [
   {
@@ -29,7 +29,7 @@ const CONTACT_CARDS = [
     label: 'GitHub',
     value: '@YehiaElsokkary26',
     href: 'https://github.com/YehiaElsokkary26',
-    accentColor: '#E07B39',
+    accentColor: '#9090b0',
     external: true,
   },
 ]
@@ -90,7 +90,7 @@ export default function Contact() {
           >
             Have something worth building?
           </h2>
-          <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
+          <p className="text-base" style={{ color: 'var(--text-muted)' }}>
             Open to engineering roles, freelance projects, and interesting problems.
           </p>
         </div>
@@ -138,7 +138,7 @@ export default function Contact() {
                       {card.label}
                     </p>
                     <p
-                      className="text-sm font-semibold truncate"
+                      className="text-base font-semibold truncate"
                       style={{ color: 'var(--text-primary)' }}
                     >
                       {card.value}
@@ -170,10 +170,10 @@ export default function Contact() {
                   <div className="flex items-center gap-2.5">
                     <span className="text-lg">{lang.flag}</span>
                     <div>
-                      <p className="text-sm font-semibold leading-tight" style={{ color: 'var(--text-primary)' }}>
+                      <p className="text-base font-semibold leading-tight" style={{ color: 'var(--text-primary)' }}>
                         {lang.name}
                       </p>
-                      <p className="text-xs" style={{ color: 'var(--text-muted)' }}>{lang.level}</p>
+                      <p className="text-sm" style={{ color: 'var(--text-muted)' }}>{lang.level}</p>
                     </div>
                   </div>
                   <ProficiencyDots filled={lang.proficiency} color="#4F6EF7" />
@@ -183,33 +183,11 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Resume download */}
-        <div className="flex justify-start mb-14">
-          <motion.a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl text-sm font-semibold whitespace-nowrap"
-            style={{
-              background: 'rgba(16,212,160,0.08)',
-              border: '1px solid rgba(16,212,160,0.3)',
-              color: '#10d4a0',
-              fontFamily: 'var(--font-body)',
-            }}
-            whileHover={{ scale: 1.02, boxShadow: '0 0 28px rgba(16,212,160,0.22)' }}
-            whileTap={{ scale: 0.97 }}
-            transition={{ duration: 0.15 }}
-          >
-            <Download size={15} />
-            Download Resume
-          </motion.a>
-        </div>
-
         {/* Divider */}
         <div className="w-full h-px mb-8" style={{ background: 'var(--border)' }} />
 
         {/* Social icon row */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 mt-8">
           {SOCIALS.map(({ icon: Icon, label, href }) => (
             <motion.a
               key={label}

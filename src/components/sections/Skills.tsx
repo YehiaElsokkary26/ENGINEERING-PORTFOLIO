@@ -36,23 +36,31 @@ export default function Skills() {
       }}
     >
       <div className="container-wide">
+        {/* Stat-led header */}
         <div className="mb-14">
-          <p className="section-tag mb-4">Capabilities</p>
-          <h2
-            className="text-3xl md:text-5xl font-bold tracking-tight mb-3"
-            style={{ fontFamily: 'var(--font-display)', color: 'var(--text-primary)' }}
-          >
-            Tools of the trade.
-          </h2>
-          <p
-            className="text-sm"
-            style={{ color: 'var(--text-muted)' }}
-          >
-            The skills and stack I reach for when building real things.
+          <div className="flex items-end gap-4 mb-3">
+            <span
+              className="text-7xl md:text-8xl font-bold leading-none tracking-tight"
+              style={{ fontFamily: 'var(--font-mono)', color: 'var(--glow-primary)' }}
+            >
+              25
+            </span>
+            <div className="pb-2">
+              <p className="section-tag mb-1">Frontend Engineering</p>
+              <p
+                className="text-2xl md:text-3xl font-bold tracking-tight"
+                style={{ fontFamily: 'var(--font-display)', color: 'var(--text-primary)' }}
+              >
+                technologies across 3 tiers.
+              </p>
+            </div>
+          </div>
+          <p className="text-base" style={{ color: 'var(--text-muted)' }}>
+            From what I ship with daily to what I can pick up on demand.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-start">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 items-start">
           {skillDomains.map((domain) => (
             <SkillColumn key={domain.id} domain={domain} />
           ))}

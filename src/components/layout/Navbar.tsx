@@ -5,35 +5,53 @@ import { Menu, X, FileText } from 'lucide-react'
 import { scrollToSection } from '@/hooks/useSmoothScroll'
 
 const NAV_LINKS = [
-  { label: 'About', href: '#about' },
-  { label: 'Education', href: '#education' },
-  { label: 'Skills', href: '#skills' },
+  { label: 'Projects',   href: '#projects' },
   { label: 'Experience', href: '#experience' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Skills',     href: '#skills' },
+  { label: 'About',      href: '#about' },
+  { label: 'Contact',    href: '#contact' },
 ]
 
+// IDs watched for active-section detection
+const WATCHED = ['projects', 'experience', 'skills', 'about', 'contact']
+
 export default function Navbar() {
-  const [visible, setVisible] = useState(true)
-  const [lastY, setLastY] = useState(0)
-  const [mobileOpen, setMobileOpen] = useState(false)
+  const [visible, setVisible]           = useState(true)
+  const [lastY, setLastY]               = useState(0)
+  const [mobileOpen, setMobileOpen]     = useState(false)
+  const [activeSection, setActiveSection] = useState('')
   const location = useLocation()
 
+  // Scroll hide/show
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY
-      if (y < 80) {
-        setVisible(true)
-      } else if (y > lastY + 8) {
-        setVisible(false)
-      } else if (lastY > y + 2) {
-        setVisible(true)
-      }
+      if (y < 80)          setVisible(true)
+      else if (y > lastY + 8) setVisible(false)
+      else if (lastY > y + 2) setVisible(true)
       setLastY(y)
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [lastY])
+
+  // Active-section indicator via IntersectionObserver
+  useEffect(() => {
+    const observers: IntersectionObserver[] = []
+
+    WATCHED.forEach((id) => {
+      const el = document.getElementById(id)
+      if (!el) return
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(id) },
+        { threshold: 0.25, rootMargin: '-72px 0px -40% 0px' }
+      )
+      obs.observe(el)
+      observers.push(obs)
+    })
+
+    return () => observers.forEach((obs) => obs.disconnect())
+  }, [])
 
   const handleNav = (href: string) => {
     setMobileOpen(false)
@@ -64,25 +82,42 @@ export default function Navbar() {
             <YELogo />
           </Link>
 
-          {/* Desktop */}
+          {/* Desktop links */}
           <ul className="hidden md:flex items-center gap-8">
-            {NAV_LINKS.map((link) => (
-              <li key={link.href}>
-                <button
-                  onClick={() => handleNav(link.href)}
-                  className="relative text-sm font-medium transition-colors duration-200 group"
-                  style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-body)' }}
-                >
-                  <span className="group-hover:text-[#F0F0FF] transition-colors duration-200">
-                    {link.label}
-                  </span>
-                  <span
-                    className="absolute -bottom-0.5 left-0 h-px w-0 group-hover:w-full transition-all duration-300"
-                    style={{ background: 'var(--glow-primary)' }}
-                  />
-                </button>
-              </li>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const isActive = link.href === '#' + activeSection
+              return (
+                <li key={link.href}>
+                  <button
+                    onClick={() => handleNav(link.href)}
+                    className="relative text-sm font-medium transition-colors duration-200 group pb-0.5"
+                    style={{
+                      color: isActive ? 'var(--text-primary)' : 'var(--text-muted)',
+                      fontFamily: 'var(--font-body)',
+                    }}
+                  >
+                    <span className="group-hover:text-[#F0F0FF] transition-colors duration-200">
+                      {link.label}
+                    </span>
+                    {/* Active underline */}
+                    <span
+                      className="absolute -bottom-0.5 left-0 h-px transition-all duration-300"
+                      style={{
+                        width: isActive ? '100%' : '0%',
+                        background: 'var(--glow-primary)',
+                      }}
+                    />
+                    {/* Hover underline (only when not active) */}
+                    {!isActive && (
+                      <span
+                        className="absolute -bottom-0.5 left-0 h-px w-0 group-hover:w-full transition-all duration-300"
+                        style={{ background: 'var(--glow-primary)', opacity: 0.5 }}
+                      />
+                    )}
+                  </button>
+                </li>
+              )
+            })}
             <li>
               <motion.a
                 href="/resume.pdf"
@@ -130,23 +165,29 @@ export default function Navbar() {
             transition={{ duration: 0.25 }}
           >
             <ul className="flex flex-col items-center gap-10">
-              {NAV_LINKS.map((link, i) => (
-                <motion.li
-                  key={link.href}
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 12 }}
-                  transition={{ delay: i * 0.07, duration: 0.35 }}
-                >
-                  <button
-                    onClick={() => handleNav(link.href)}
-                    className="text-4xl font-bold tracking-tight"
-                    style={{ fontFamily: 'var(--font-display)', color: 'var(--text-primary)' }}
+              {NAV_LINKS.map((link, i) => {
+                const isActive = link.href === '#' + activeSection
+                return (
+                  <motion.li
+                    key={link.href}
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 12 }}
+                    transition={{ delay: i * 0.07, duration: 0.35 }}
                   >
-                    {link.label}
-                  </button>
-                </motion.li>
-              ))}
+                    <button
+                      onClick={() => handleNav(link.href)}
+                      className="text-4xl font-bold tracking-tight transition-colors duration-200"
+                      style={{
+                        fontFamily: 'var(--font-display)',
+                        color: isActive ? 'var(--glow-primary)' : 'var(--text-primary)',
+                      }}
+                    >
+                      {link.label}
+                    </button>
+                  </motion.li>
+                )
+              })}
               <motion.li
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -188,15 +229,13 @@ function YELogo() {
       xmlns="http://www.w3.org/2000/svg"
       aria-label="Yehia Elsokkary"
     >
-      {/* Y — white */}
-      <path d="M2 3L11 15" stroke="#F0F0FF" strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M2 3L11 15"  stroke="#F0F0FF" strokeWidth="2.5" strokeLinecap="round" />
       <path d="M20 3L11 15" stroke="#F0F0FF" strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M11 15V29" stroke="#F0F0FF" strokeWidth="2.5" strokeLinecap="round" />
-      {/* E — brand blue */}
-      <path d="M28 3V29" stroke="#4F6EF7" strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M28 3H46" stroke="#4F6EF7" strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M28 16H42" stroke="#4F6EF7" strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M28 29H46" stroke="#4F6EF7" strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M11 15V29"   stroke="#F0F0FF" strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M28 3V29"    stroke="#4F6EF7" strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M28 3H46"    stroke="#4F6EF7" strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M28 16H42"   stroke="#4F6EF7" strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M28 29H46"   stroke="#4F6EF7" strokeWidth="2.5" strokeLinecap="round" />
     </svg>
   )
 }

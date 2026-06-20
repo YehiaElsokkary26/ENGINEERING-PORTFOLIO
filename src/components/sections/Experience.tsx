@@ -2,60 +2,46 @@ import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
-import { Shield, Camera, Film, TrendingUp, Building2, Users } from 'lucide-react'
-import type { ComponentType } from 'react'
+import { Shield, Camera, Film, TrendingUp, Building2 } from 'lucide-react'
 
-interface Exp {
-  company: string
-  role: string
-  period: string
-  accentColor: string
-  icon: ComponentType<{ size?: number; color?: string }>
-  bullets: string[]
-  tags: string[]
-  image?: string
-}
-
-const ENGINEERING: Exp[] = [
+const ENGINEERING = [
   {
     company: 'CYSHEILD',
     role: 'Cyber Security & AI Intern',
     period: 'July 2025 – August 2025',
     accentColor: '#4F6EF7',
     icon: Shield,
-    image: '/images/experience/cyshield.jpg',
     bullets: [
-      'Participated in hands-on cybersecurity and AI-powered threat detection training led by industry professionals.',
-      'Gained experience in threat analysis, security fundamentals, and AI-based anomaly detection systems.',
-      'Learned security protocols, risk assessment techniques, and data protection best practices.',
+      'Completed intensive hands-on training in AI-powered threat detection, working directly alongside active industry security professionals.',
+      'Applied Pandas and NumPy to preprocess security log datasets for AI-based risk assessment workflows.',
+      'Studied offensive and defensive security frameworks — protocols, anomaly detection, risk assessment, and incident response — in a structured professional environment.',
     ],
-    tags: ['Cybersecurity', 'AI', 'Threat Analysis', 'Risk Assessment', 'Data Protection'],
+    tags: ['Cybersecurity', 'AI', 'Pandas', 'NumPy', 'Anomaly Detection', 'Risk Assessment'],
   },
 ]
 
-const MARKETING: Exp[] = [
+const MARKETING = [
   {
     company: 'ELARABY',
     role: 'Summer Internship Trainee',
     period: 'Aug 2025 – Sept 2025',
-    accentColor: '#E07B39',
+    accentColor: '#10d4a0',
     icon: TrendingUp,
-    image: '/images/experience/elaraby.jpg',
     bullets: [
-      'Learned social media marketing, branding, and audience engagement strategies.',
-      'Assisted with marketing campaigns and content planning in a professional business environment.',
+      'Executed social media campaigns and content planning within a structured corporate marketing department at one of Egypt\'s largest electronics companies.',
+      'Developed hands-on skills in audience targeting, brand positioning, and campaign coordination inside a large-scale business environment.',
     ],
     tags: ['Marketing', 'Social Media', 'Branding', 'Content Planning'],
   },
   {
     company: 'KLEAN CORP',
-    role: 'Photographer & Content Creator',
+    role: 'Lead Photographer & Content Creator',
     period: 'Sept 2023 – Present',
     accentColor: '#8B5CF6',
     icon: Camera,
     bullets: [
-      'Lead Photographer & Content Creator responsible for producing creative visual content for the brand.',
-      'Captured and edited cinematic photo/video content for social media and marketing campaigns.',
+      'Serve as sole visual content lead — conceiving, shooting, and editing all photo and video assets for the brand\'s social media and marketing campaigns.',
+      'Deliver cinematic photo/video production across ongoing campaigns, from initial concept through final cut and platform-ready export.',
     ],
     tags: ['Photography', 'Video Editing', 'Content Creation', 'Social Media'],
   },
@@ -63,12 +49,12 @@ const MARKETING: Exp[] = [
     company: 'FILQAHERA',
     role: 'Multimedia Intern',
     period: 'July 2024 – Sept 2025',
-    accentColor: '#E07B39',
+    accentColor: '#8B5CF6',
     icon: Film,
     bullets: [
-      'Interned as part of the Multimedia Team, creating engaging Reels and TikToks.',
-      "Contributed to enhancing the brand's social media presence through consistent video content.",
-      'Helped boost engagement and improve page aesthetics by introducing creative, high-quality visuals.',
+      'Produced short-form video content (Reels, TikToks) as a core member of the Multimedia Team, contributing directly to the brand\'s content pipeline.',
+      'Raised visual production standards across the brand\'s social channels by introducing a more cinematic shooting and editing approach.',
+      'Drove consistent audience growth through regular high-quality content drops that improved both aesthetic coherence and engagement rates.',
     ],
     tags: ['Video Production', 'Reels', 'TikTok', 'Social Media', 'Content Creation'],
   },
@@ -79,44 +65,14 @@ const MARKETING: Exp[] = [
     accentColor: '#10d4a0',
     icon: Building2,
     bullets: [
-      'Co-founded a creative production space; created campaigns and negotiated deals with clients.',
-      "Contributed to enhancing the brand's social media presence through consistent video content.",
-      'Helped boost engagement and improve page aesthetics by introducing creative, high-quality visuals.',
+      'Co-founded a creative production studio from scratch — led client acquisition, contract negotiation, and end-to-end campaign production.',
+      'Established the studio\'s visual identity and creative direction, building a brand and pitching process from the ground up.',
     ],
     tags: ['Entrepreneurship', 'Campaigns', 'Client Relations', 'Social Media'],
   },
 ]
 
-const VOLUNTEERING: Exp[] = [
-  {
-    company: 'Riseup Summit',
-    role: 'Event Volunteer',
-    period: '2025',
-    accentColor: '#10d4a0',
-    icon: Users,
-    image: '/images/experience/riseup.jpg',
-    bullets: [
-      "Volunteered at one of the Middle East's largest startup and innovation summits.",
-      'Supported event operations, logistics, and attendee experience across the venue.',
-    ],
-    tags: ['Volunteering', 'Events', 'Startups', 'Innovation'],
-  },
-  {
-    company: 'SYNC Summit',
-    role: 'Event Volunteer',
-    period: '2025',
-    accentColor: '#8B5CF6',
-    icon: Users,
-    image: '/images/experience/sync.jpg',
-    bullets: [
-      'Volunteered at SYNC Summit, a major creative and media industry conference.',
-      'Contributed to team coordination and on-ground event support.',
-    ],
-    tags: ['Volunteering', 'Events', 'Media', 'Creative Industry'],
-  },
-]
-
-function ExpCard({ exp }: { exp: Exp }) {
+function ExpCard({ exp }: { exp: typeof ENGINEERING[number] }) {
   const Icon = exp.icon
   return (
     <motion.div
@@ -151,40 +107,22 @@ function ExpCard({ exp }: { exp: Exp }) {
                 {exp.role}
               </p>
             </div>
-
-            {/* Period + optional photo thumbnail */}
-            <div className="flex flex-col items-start sm:items-end gap-2 flex-shrink-0">
-              <span
-                className="inline-flex items-center px-3 py-1 rounded-full text-xs whitespace-nowrap"
-                style={{
-                  fontFamily: 'var(--font-body)',
-                  background: `${exp.accentColor}12`,
-                  border: `1px solid ${exp.accentColor}25`,
-                  color: exp.accentColor,
-                }}
-              >
-                {exp.period}
-              </span>
-              {exp.image && (
-                <div
-                  className="w-28 h-18 rounded-xl overflow-hidden flex-shrink-0"
-                  style={{ border: `1px solid ${exp.accentColor}25` }}
-                >
-                  <img
-                    src={exp.image}
-                    alt={`${exp.company} — on-site photo`}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                    style={{ display: 'block' }}
-                  />
-                </div>
-              )}
-            </div>
+            <span
+              className="inline-flex items-center px-4 py-2 rounded-full text-xs whitespace-nowrap self-start"
+              style={{
+                fontFamily: 'var(--font-body)',
+                background: `${exp.accentColor}12`,
+                border: `1px solid ${exp.accentColor}25`,
+                color: exp.accentColor,
+              }}
+            >
+              {exp.period}
+            </span>
           </div>
 
           <ul className="flex flex-col gap-4 mb-7">
             {exp.bullets.map((bullet, i) => (
-              <li key={i} className="flex items-start gap-2.5 text-sm" style={{ color: 'var(--text-body)' }}>
+              <li key={i} className="flex items-start gap-2.5 text-base" style={{ color: 'var(--text-body)' }}>
                 <span
                   className="mt-[7px] w-1.5 h-1.5 rounded-full flex-shrink-0"
                   style={{ background: exp.accentColor }}
@@ -198,7 +136,7 @@ function ExpCard({ exp }: { exp: Exp }) {
             {exp.tags.map((tag) => (
               <span
                 key={tag}
-                className="px-3 py-1 rounded-full text-xs whitespace-nowrap"
+                className="px-3 py-2 rounded-full text-xs whitespace-nowrap"
                 style={{
                   fontFamily: 'var(--font-mono)',
                   background: 'rgba(255,255,255,0.04)',
@@ -253,7 +191,7 @@ export default function Experience() {
           >
             Work in the field.
           </h2>
-          <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
+          <p className="text-base" style={{ color: 'var(--text-muted)' }}>
             Real-world experience applying skills in professional settings.
           </p>
         </div>
@@ -278,17 +216,6 @@ export default function Experience() {
 
         <div className="flex flex-col gap-7">
           {MARKETING.map((exp) => <ExpCard key={exp.company} exp={exp} />)}
-        </div>
-
-        {/* Volunteering */}
-        <div className="flex items-center gap-4 my-10">
-          <div className="h-px flex-1" style={{ background: 'var(--border)' }} />
-          <span className="section-tag">Volunteering</span>
-          <div className="h-px flex-1" style={{ background: 'var(--border)' }} />
-        </div>
-
-        <div className="flex flex-col gap-7">
-          {VOLUNTEERING.map((exp) => <ExpCard key={exp.company} exp={exp} />)}
         </div>
       </div>
     </section>

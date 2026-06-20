@@ -40,7 +40,7 @@ export default function StatCard({ value, label }: StatCardProps) {
   return (
     <div
       ref={ref}
-      className="flex flex-col items-center gap-1.5 px-3 py-4 rounded-xl"
+      className="flex flex-col items-center gap-2 px-4 py-5 rounded-xl"
       style={{
         background: 'var(--surface)',
         border: '1px solid var(--border)',
@@ -53,7 +53,7 @@ export default function StatCard({ value, label }: StatCardProps) {
         {displayed}
       </span>
       <span
-        className="text-xs uppercase label-tag"
+        className="text-sm uppercase label-tag"
         style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}
       >
         {label}

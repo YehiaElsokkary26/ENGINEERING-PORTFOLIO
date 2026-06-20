@@ -4,7 +4,6 @@ import ProjectCard from '@/components/ui/ProjectCard'
 const IN_PROGRESS = [
   { label: 'Arduino IoT', hint: 'Embedded Systems' },
   { label: 'Mobile App', hint: 'React Native' },
-  { label: 'Stealth Project', hint: 'Details soon' },
 ]
 
 export default function Projects() {
@@ -23,7 +22,7 @@ export default function Projects() {
           >
             Projects that defy the obvious.
           </h2>
-          <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
+          <p className="text-base" style={{ color: 'var(--text-muted)' }}>
             A selection of real projects — built, shipped, and learned from.
           </p>
         </div>
@@ -47,7 +46,7 @@ export default function Projects() {
             {IN_PROGRESS.map(({ label, hint }) => (
               <span
                 key={label}
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs"
+                className="inline-flex items-center gap-2 px-3 py-2 rounded-full text-xs"
                 style={{
                   fontFamily: 'var(--font-mono)',
                   background: 'rgba(79,110,247,0.06)',

@@ -28,7 +28,7 @@ export default function SkillColumn({ domain }: SkillColumnProps) {
           {domain.icon}
         </span>
         <h3
-          className="text-sm font-bold leading-tight"
+          className="text-base font-bold leading-tight"
           style={{ fontFamily: 'var(--font-display)', color: 'var(--text-primary)' }}
         >
           {domain.title}
@@ -36,11 +36,11 @@ export default function SkillColumn({ domain }: SkillColumnProps) {
       </div>
 
       {/* Pills */}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2.5">
         {domain.skills.map((skill) => (
           <span
             key={skill}
-            className="px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap"
+            className="px-3 py-2 rounded-full text-sm font-medium whitespace-nowrap"
             style={{
               fontFamily: 'var(--font-mono)',
               background: `${domain.accentColor}15`,

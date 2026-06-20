@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowRight, GitBranch, ExternalLink } from 'lucide-react'
 import { useGSAP } from '@gsap/react'
@@ -11,14 +12,9 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project, index }: ProjectCardProps) {
+  const navigate = useNavigate()
   const cardRef = useRef<HTMLDivElement>(null)
   const isEven = index % 2 === 0
-  const primaryUrl = project.live || project.github
-
-  function handleCardClick(e: React.MouseEvent<HTMLDivElement>) {
-    if ((e.target as HTMLElement).closest('a')) return
-    if (primaryUrl) window.open(primaryUrl, '_blank', 'noopener,noreferrer')
-  }
 
   useGSAP(
     () => {
@@ -40,13 +36,12 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
   return (
     <div ref={cardRef}>
       <motion.div
-        className={`relative flex flex-col rounded-3xl overflow-hidden ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}${primaryUrl ? ' cursor-pointer' : ''}`}
+        className={`relative flex flex-col rounded-3xl overflow-hidden ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}
         style={{
           background: 'var(--surface)',
           border: '1px solid var(--border)',
           minHeight: '420px',
         }}
-        onClick={handleCardClick}
         whileHover={{
           borderColor: 'rgba(79,110,247,0.4)',
           boxShadow: '0 0 40px rgba(79,110,247,0.15), 0 20px 60px rgba(0,0,0,0.4)',
@@ -120,7 +115,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           {/* Category + number + WIP badge */}
           <div className="flex items-center gap-3 flex-wrap">
             <span
-              className="text-xs px-3 py-1 rounded-full whitespace-nowrap"
+              className="text-xs px-3 py-2 rounded-full whitespace-nowrap"
               style={{
                 fontFamily: 'var(--font-mono)',
                 background: `${project.accentColor}18`,
@@ -138,7 +133,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             </span>
             {project.status && (
               <span
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs whitespace-nowrap"
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-xs whitespace-nowrap"
                 style={{
                   fontFamily: 'var(--font-mono)',
                   background: 'rgba(79,110,247,0.06)',
@@ -172,11 +167,11 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           </p>
 
           {/* Tech stack pills */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-3">
             {project.tech.slice(0, 5).map((t) => (
               <span
                 key={t}
-                className="px-3 py-1 rounded-full text-xs whitespace-nowrap"
+                className="px-3 py-2 rounded-full text-xs whitespace-nowrap"
                 style={{
                   fontFamily: 'var(--font-mono)',
                   background: 'rgba(255,255,255,0.04)',
@@ -191,23 +186,16 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
 
           {/* Actions */}
           <div className="flex items-center gap-4 mt-1 flex-wrap">
-            {primaryUrl && (
-              <motion.a
-                href={primaryUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm font-semibold group py-2 pr-2 -ml-1"
-                style={{ color: project.accentColor, fontFamily: 'var(--font-body)' }}
-                whileHover={{ x: 4 }}
-                transition={{ duration: 0.2 }}
-              >
-                View Project
-                <ArrowRight
-                  size={16}
-                  className="transition-transform duration-200 group-hover:translate-x-1"
-                />
-              </motion.a>
-            )}
+            <motion.button
+              onClick={() => navigate(`/project/${project.id}`)}
+              className="flex items-center gap-2 text-sm font-semibold group py-2 pr-2 -ml-1"
+              style={{ color: project.accentColor, fontFamily: 'var(--font-body)' }}
+              whileHover={{ x: 4 }}
+              transition={{ duration: 0.2 }}
+            >
+              Case Study
+              <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
+            </motion.button>
 
             {project.github && (
               <a

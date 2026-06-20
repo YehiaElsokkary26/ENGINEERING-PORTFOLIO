@@ -62,16 +62,12 @@ export default function Education() {
     >
       <div className="container-wide">
         <div className="mb-16">
-          <p className="section-tag mb-4">Education</p>
           <h2
-            className="text-3xl md:text-5xl font-bold tracking-tight mb-3"
+            className="text-3xl md:text-5xl font-bold tracking-tight"
             style={{ fontFamily: 'var(--font-display)', color: 'var(--text-primary)' }}
           >
-            Academic foundation.
+            Education.
           </h2>
-          <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-            Building on a strong technical and academic base.
-          </p>
         </div>
 
         <div className="flex flex-col gap-7">

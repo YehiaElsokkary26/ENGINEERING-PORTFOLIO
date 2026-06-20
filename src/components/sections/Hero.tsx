@@ -2,7 +2,7 @@ import { lazy, Suspense } from 'react'
 import { motion } from 'framer-motion'
 import { scrollToSection } from '@/hooks/useSmoothScroll'
 import GlowButton from '@/components/ui/GlowButton'
-import { Download, ArrowRight } from 'lucide-react'
+import { ArrowRight, Download } from 'lucide-react'
 
 
 const HeroScene = lazy(() => import('@/components/three/HeroScene'))
@@ -108,23 +108,21 @@ export default function Hero() {
           </motion.p>
 
           <motion.div
-            className="flex items-center gap-4 flex-wrap"
+            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 flex-wrap"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.82, duration: 0.55, ease: 'easeOut' }}
           >
-            {/* Primary CTA */}
             <GlowButton variant="filled" onClick={() => scrollToSection('#projects')}>
               View Projects
               <ArrowRight size={15} />
             </GlowButton>
-
-            {/* Secondary CTA */}
+            <GlowButton variant="outlined" onClick={() => scrollToSection('#experience')}>
+              Experience
+            </GlowButton>
             <GlowButton variant="outlined" onClick={() => scrollToSection('#contact')}>
               Contact Me
             </GlowButton>
-
-            {/* Tertiary — outlined button, same visual level as Contact Me */}
             <GlowButton
               variant="outlined"
               href="/resume.pdf"
@@ -132,7 +130,7 @@ export default function Hero() {
               rel="noopener noreferrer"
             >
               <Download size={14} />
-              Download CV
+              Resume
             </GlowButton>
           </motion.div>
         </div>

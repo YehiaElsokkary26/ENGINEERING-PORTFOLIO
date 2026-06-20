@@ -28,21 +28,21 @@ export const projects: Project[] = [
     tagline: 'Smart scheduling and productivity, built full-stack.',
     category: 'WEB APPLICATION',
     description:
-      'A smart scheduling and productivity web app built with React and Node.js. Designed to help users organize their time, manage tasks, and stay on top of deadlines through a clean, scalable full-stack platform.',
+      'A full-stack scheduling platform built with React, Node.js, Express.js, and Supabase — supporting task management, calendar scheduling, and team collaboration across mobile and desktop.',
     challenge:
-      'Productivity tools often trade simplicity for power. Building a scheduling app that feels intuitive while supporting rich backend logic — user accounts, persistent schedules, and real-time data — required careful full-stack design.',
+      'Scheduling tools often sacrifice power for simplicity. Building one that handles team collaboration, real-time state, and secure access management without becoming complex required careful API and auth design from the ground up.',
     solution:
-      'Built the frontend in React with a focus on clean UX and responsive layouts. Implemented Node.js backend systems for user data, scheduling logic, and database management. Designed the architecture to be scalable from the ground up, supporting growing feature sets without rewrites.',
-    tech: ['React', 'Node.js', 'JavaScript', 'Database', 'Full-Stack'],
+      'Built a RESTful API with JWT authentication and role-based access control (RBAC) on the backend. Designed a responsive Tailwind CSS frontend in React with Supabase for persistent data. Structured the full-stack architecture to support feature growth without rewrites.',
+    tech: ['React', 'Node.js', 'Express.js', 'Supabase', 'REST API', 'JWT', 'Tailwind CSS'],
     year: 2026,
-    duration: 'March – May 2026',
+    duration: 'March – June 2026',
     role: 'Full-Stack Developer',
     gradient: ['#0a1628', '#0a1e12'],
     accentColor: '#10d4a0',
     github: 'https://github.com/YehiaElsokkary26/NAZAMLY---NEWEST-TRIAL',
     results: [
-      { label: 'Stack', value: 'React + Node' },
-      { label: 'Type', value: 'Full-Stack' },
+      { label: 'Auth', value: 'JWT + RBAC' },
+      { label: 'Stack', value: 'React + Express' },
       { label: 'Status', value: 'Complete' },
     ],
   },
@@ -53,21 +53,21 @@ export const projects: Project[] = [
     tagline: 'A classic board game, fully reimagined in Java.',
     category: 'JAVA APPLICATION',
     description:
-      'A fully playable digital adaptation of Jackaroo — the popular Middle Eastern board game — built entirely in Java. Complete game rules, turn-based logic, collision detection, and a graphical interface, all from scratch.',
+      'A fully playable digital Jackaroo — built in Java using 15+ classes and all four OOP principles. Full 52-card engine supporting 4-player sessions, with 50+ test cases and zero critical bugs.',
     challenge:
-      'Jackaroo has non-trivial mechanics: card-driven movement, marble collisions, safe zones, and multi-player turn management. Translating these physical rules into clean, bug-free code required careful design before writing a single line.',
+      'Jackaroo has non-trivial mechanics: card-driven movement, marble collisions, safe zones, and multi-player turn management. Translating these physical rules into clean, testable code required careful object design before writing a single line.',
     solution:
-      'Applied object-oriented design to model the board, marbles, players, and card deck as distinct classes with clear responsibilities. Implemented the full rule engine including special card effects, collision resolution, and win-state detection. Iterated through play sessions to surface and fix edge cases.',
-    tech: ['Java', 'OOP', 'Eclipse', 'Game Logic', 'Software Design'],
-    year: 2025,
-    duration: 'Dec 2024 – May 2025',
+      'Modeled the board, marbles, players, and card deck as distinct classes with clear responsibilities across 15+ classes. Implemented the full rule engine including special card effects and collision resolution. Validated correctness with 50+ test cases — zero critical bugs at submission.',
+    tech: ['Java', 'OOP', 'Eclipse IDE', 'Game Logic', 'Unit Testing'],
+    year: 2024,
+    duration: 'Dec 2023 – May 2024',
     role: 'Developer',
-    gradient: ['#1a0f05', '#0f0a1f'],
-    accentColor: '#E07B39',
+    gradient: ['#12082a', '#0f0a1f'],
+    accentColor: '#8B5CF6',
     results: [
-      { label: 'Language', value: 'Java' },
-      { label: 'Pattern', value: 'OOP' },
-      { label: 'Status', value: 'Complete' },
+      { label: 'Classes', value: '15+' },
+      { label: 'Test Cases', value: '50+' },
+      { label: 'Bugs', value: 'Zero critical' },
     ],
   },
   {
@@ -77,12 +77,12 @@ export const projects: Project[] = [
     tagline: 'Relational database design for real HR workflows.',
     category: 'DATABASE',
     description:
-      'An HR management system built with Visual Studio and JavaScript, featuring integrated database management. Covers recruitment workflows, employee records, department structures, and organized data handling for scalable HR operations.',
+      'A web-based HR management system covering recruitment, employee records, and payroll modules — backed by a normalised MySQL database with 8 tables, dynamic search/filter, and form validation.',
     challenge:
       'HR data is inherently relational: employees belong to departments, managers oversee teams, salaries have history, and reports span multiple entities. Modeling this without redundancy or broken joins requires upfront schema discipline.',
     solution:
-      'Developed backend logic and database structures in Visual Studio. Built features for recruitment workflows and employee management. Designed scalable data architecture with clean separation between business logic and storage layers.',
-    tech: ['JavaScript', 'Visual Studio', 'SQL', 'Database Design', 'HR Systems'],
+      'Designed a normalised MySQL schema with 8 tables covering all HR entities. Built recruitment, records, and payroll modules with dynamic search, filtering, and validated forms throughout. Kept business logic and data layers cleanly separated.',
+    tech: ['JavaScript', 'HTML', 'CSS', 'MySQL', 'Database Design'],
     year: 2025,
     duration: 'March – May 2025',
     role: 'Developer & Database Designer',
@@ -126,14 +126,14 @@ export const projects: Project[] = [
     tagline: 'A collaborative platform built as part of a university software engineering team.',
     category: 'WEBSITE',
     description:
-      'A software engineering group project — a collaborative platform built as part of a university team. Designed and developed with a focus on clean architecture, shared conventions, and real team coordination.',
+      'A full-stack portfolio platform with PHP/MySQL backend handling user authentication, profile management, and data storage — built as part of a university software engineering team.',
     challenge:
       'Coordinating a multi-person engineering team around a shared codebase requires alignment on conventions, tooling, and responsibilities before any useful code can be written.',
     solution:
-      'Collaborated in a structured team environment applying software engineering principles — version control workflows, modular design, and agile practices — to deliver a functioning platform as a cohesive group.',
-    tech: ['Software Engineering', 'Team Project'],
+      'Built the backend in PHP with MySQL — covering user auth flows, profile data management, and persistent storage. Collaborated in a structured team using version control workflows, modular design, and agile practices throughout.',
+    tech: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
     year: 2026,
-    duration: '2026',
+    duration: 'March – May 2026',
     role: 'Team Member',
     gradient: ['#0a1628', '#0d1a2e'],
     accentColor: '#4F6EF7',
